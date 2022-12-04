@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
+/*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
-/*                                                     +:+                    */
-/*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/01/31 00:40:08 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/12/04 15:56:18 by franmart         ###   ########.fr       */
+/*                                                    +:+ +:+         +:+     */
+/*   By: franmart <franmart@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/31 00:40:08 by W2Wizard          #+#    #+#             */
+/*   Updated: 2022/12/04 20:59:00 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <memory.h>
-#define WIDTH 256
-#define HEIGHT 256
+#define WIDTH 800
+#define HEIGHT 800
 
 mlx_image_t	*g_img;
 
@@ -28,13 +28,13 @@ void	hook(void *param)
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx);
 	if (mlx_is_key_down(mlx, MLX_KEY_UP))
-		g_img->instances[0].y -= 5;
+		g_img->instances[0].y -= 2;
 	if (mlx_is_key_down(mlx, MLX_KEY_DOWN))
-		g_img->instances[0].y += 5;
+		g_img->instances[0].y += 2;
 	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
-		g_img->instances[0].x -= 5;
+		g_img->instances[0].x -= 2;
 	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
-		g_img->instances[0].x += 5;
+		g_img->instances[0].x += 2;
 }
 
 int32_t	main(void)

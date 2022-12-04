@@ -6,7 +6,7 @@
 #    By: franmart <franmart@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 16:21:03 by franmart          #+#    #+#              #
-#    Updated: 2022/12/04 16:05:47 by franmart         ###   ########.fr        #
+#    Updated: 2022/12/04 20:49:37 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,15 @@ RM = rm -rf
 MLX42 = MLX42/libmlx42.a
 MLX42_DIR = MLX42/
 
+INCLUDES = -ldl -lglfw -pthread -lm 
+
 SRC = main.c
 
 OBJ = $(SRC:.c=.o)
 
 ${NAME}: ${OBJ}
 	$(MAKE) all -C $(MLX42_DIR)
-	$(CC) $(MLX42) $(OBJ) -o $(NAME) -ldl -lglfw -pthread -lm -I MLX42/include 
+	$(CC) $(OBJ) -o $(NAME) $(MLX42) $(INCLUDES)
 
 %.o: %.c
 	${CC} ${FLAGS} -c $^ -o $@
