@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: franmart <franmart@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 00:40:08 by W2Wizard          #+#    #+#             */
-/*   Updated: 2022/12/04 20:59:00 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/10 19:10:09 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42/include/MLX42/MLX42.h"
+#include "../lib/MLX42/include/MLX42/MLX42.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
