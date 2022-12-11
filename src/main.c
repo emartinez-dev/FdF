@@ -6,15 +6,12 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 00:40:08 by W2Wizard          #+#    #+#             */
-/*   Updated: 2022/12/10 19:10:09 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/11 19:11:19 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/MLX42/include/MLX42/MLX42.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <memory.h>
+#include "../lib/libft/include/libft.h"
 #define WIDTH 800
 #define HEIGHT 800
 
@@ -41,11 +38,16 @@ int32_t	main(void)
 {
 	mlx_t	*mlx;
 
+
+	ft_printf("Hello World!\n");
 	mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!mlx)
 		exit(EXIT_FAILURE);
-	g_img = mlx_new_image(mlx, 128, 128);
-	memset(g_img->pixels, 255, g_img->width * g_img->height * sizeof(int));
+	g_img = mlx_new_image(mlx, 500, 500);
+	for (int i = 0; i < 500; i++)
+	{
+		mlx_put_pixel(g_img, i/4, i, i/3);
+	}
 	mlx_image_to_window(mlx, g_img, 0, 0);
 	mlx_loop_hook(mlx, &hook, mlx);
 	mlx_loop(mlx);

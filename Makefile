@@ -6,7 +6,7 @@
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 16:21:03 by franmart          #+#    #+#              #
-#    Updated: 2022/12/10 19:13:45 by franmart         ###   ########.fr        #
+#    Updated: 2022/12/11 19:34:35 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIBFT_DIR = lib/libft
 INCLUDES = -ldl -lglfw -pthread -lm 
 
 SRC_DIR = src/
-_SRC = main.c
+_SRC = map.c
 SRC = $(addprefix $(SRC_DIR), $(_SRC))
 
 OBJ = $(SRC:.c=.o)
