@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:03:55 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/13 19:29:35 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/13 20:11:07 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	count_cols(char *line)
 	return (i);
 }
 
-void	map_dimensions(char *filename, t_map *map)
+void	map_measure(char *filename, t_map *map)
 {
 	int		fd;
 	int		cols;
@@ -53,17 +53,29 @@ void	map_dimensions(char *filename, t_map *map)
 	close(fd);
 }
 
-void	map_init(char *filename, t_map *map)
+void	map_alloc(char *filename, t_map *map)
 {
 	int	row;
 
 	row = 0;
-	map_dimensions(filename, map);
-	ft_printf("w:%d h:%d \n", map->width, map->height);
-	map->map = ft_calloc(map->height, sizeof(t_point *));
+	map_measure(filename, map);
+	map->points = ft_calloc(map->height, sizeof(t_point *));
 	while (row < map->height)
 	{
-		map->map[row] = ft_calloc(map->width, sizeof(t_point));
+		map->points[row] = ft_calloc(map->width, sizeof(t_point));
 		row++;
 	}
+}
+
+void	map_free(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->height)
+	{
+		free(map->points[i]);
+		i++;
+	}
+	free(map->points);
 }

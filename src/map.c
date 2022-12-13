@@ -6,15 +6,16 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:23:19 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/13 19:29:59 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/13 20:16:43 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/map.h"
 
 #define DEFAULT_COLOR 255
+#define BASE_HEX	"0123456789abcdef"
 
-void	read_file(char *filename, t_map *map)
+void	map_init(char *filename, t_map *map)
 {
 	int		fd;
 	int		row;
@@ -22,7 +23,7 @@ void	read_file(char *filename, t_map *map)
 	char	*trim_line;
 
 	row = 0;
-	map_init(filename, map);
+	map_alloc(filename, map);
 	fd = open(filename, O_RDONLY);
 	line = ft_gnl(fd);
 	while (line != NULL)
@@ -47,20 +48,20 @@ void	read_row(char *line, t_map *map, int row)
 	text_cells = ft_split(line, ' ');
 	while (text_cells[++i])
 	{
-		map->map[row][i].x = i;
-		map->map[row][i].z = row;
+		map->points[row][i].x = i;
+		map->points[row][i].z = row;
 		if (ft_strchr(line, ',') != 0)
 		{
 			str = ft_split(line, ',');
-			map->map[row][i].y = ft_atoi(str[0]);
-			map->map[row][i].color = ft_atoi_base(str[1], "0123456789abcdef");
+			map->points[row][i].y = ft_atoi(str[0]);
+			map->points[row][i].color = ft_atoi_base(str[1], BASE_HEX);
 			free_array(str);
 		}
 		else
 		{
 			str = 0;
-			map->map[row][i].y = ft_atoi(text_cells[i]);
-			map->map[row][i].color = DEFAULT_COLOR;
+			map->points[row][i].y = ft_atoi(text_cells[i]);
+			map->points[row][i].color = DEFAULT_COLOR;
 		}
 	}
 	free_array(text_cells);
@@ -73,21 +74,24 @@ int	main(int argc, char **argv)
 	int		c;
 
 	r = 0;
-	read_file(argv[1], &map);
+	map_init(argv[1], &map);
+	/*
 	while (r < map.height)
 	{
 		c = 0;
 		while (c < map.width)
 		{
 			ft_printf("Celda (%d,%d)\nValores: x%d y%d z%d color %x\n\n", r, c,
-				map.map[r][c].x,
-				map.map[r][c].y,
-				map.map[r][c].z,
-				map.map[r][c].color
+				map.points[r][c].x,
+				map.points[r][c].y,
+				map.points[r][c].z,
+				map.points[r][c].color
 				);
 			c++;
 		}
 		r++;
 	}
+	*/
+	map_free(&map);
 	return (0);
 }
