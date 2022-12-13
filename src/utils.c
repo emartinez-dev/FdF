@@ -6,11 +6,11 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:12:46 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/13 15:42:52 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/13 18:10:48 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "../lib/libft/include/libft.h"
 
 void	double_free(char **arr)
 {
