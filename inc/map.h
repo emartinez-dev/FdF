@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 19:13:14 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/12 22:01:33 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/13 15:25:50 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ typedef	struct	s_map
 
 void	read_file(char *filename, t_map *map);
 t_point	*read_cols(char *line, t_map *map, int row);
+void	double_free(char **arr);
 
 #	endif
