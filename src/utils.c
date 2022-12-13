@@ -6,13 +6,13 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:12:46 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/13 18:10:48 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/13 19:08:35 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/libft/include/libft.h"
 
-void	double_free(char **arr)
+void	free_array(char **arr)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:03:55 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/13 18:07:38 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/13 19:29:35 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	count_cols(char *line)
 	free(clean_line);
 	while (cells[i])
 		i++;
-	double_free(cells);
+	free_array(cells);
 	return (i);
 }
 
@@ -39,7 +39,7 @@ void	map_dimensions(char *filename, t_map *map)
 	map->width = 0;
 	fd = open(filename, O_RDONLY);
 	line = ft_gnl(fd);
-	while (line)
+	while (line != NULL)
 	{
 		cols = count_cols(line);
 		if (map->height == 0)
@@ -50,7 +50,6 @@ void	map_dimensions(char *filename, t_map *map)
 		map->height++;
 		line = ft_gnl(fd);
 	}
-	free(line);
 	close(fd);
 }
 
@@ -60,6 +59,7 @@ void	map_init(char *filename, t_map *map)
 
 	row = 0;
 	map_dimensions(filename, map);
+	ft_printf("w:%d h:%d \n", map->width, map->height);
 	map->map = ft_calloc(map->height, sizeof(t_point *));
 	while (row < map->height)
 	{

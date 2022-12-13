@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 00:40:08 by W2Wizard          #+#    #+#             */
-/*   Updated: 2022/12/12 19:51:58 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/13 18:16:59 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	hook(void *param)
 int32_t	main(void)
 {
 	mlx_t	*mlx;
-
 
 	ft_printf("Hello World!\n");
 	mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);

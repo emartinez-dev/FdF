@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:23:19 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/13 18:24:03 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/13 19:29:59 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	read_file(char *filename, t_map *map)
 	map_init(filename, map);
 	fd = open(filename, O_RDONLY);
 	line = ft_gnl(fd);
-	while (line)
+	while (line != NULL)
 	{
 		trim_line = ft_strtrim(line, " \n");
 		read_row(trim_line, map, row);
@@ -34,7 +34,6 @@ void	read_file(char *filename, t_map *map)
 		free(trim_line);
 		line = ft_gnl(fd);
 	}
-	free(line);
 	close(fd);
 }
 
@@ -55,7 +54,7 @@ void	read_row(char *line, t_map *map, int row)
 			str = ft_split(line, ',');
 			map->map[row][i].y = ft_atoi(str[0]);
 			map->map[row][i].color = ft_atoi_base(str[1], "0123456789abcdef");
-			double_free(str);
+			free_array(str);
 		}
 		else
 		{
@@ -64,7 +63,7 @@ void	read_row(char *line, t_map *map, int row)
 			map->map[row][i].color = DEFAULT_COLOR;
 		}
 	}
-	double_free(text_cells);
+	free_array(text_cells);
 }
 
 int	main(int argc, char **argv)
