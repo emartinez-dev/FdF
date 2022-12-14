@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 19:13:14 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/13 20:10:29 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/14 23:27:04 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 
 typedef struct s_point
 {
-	int				x;
-	int				y;
 	int				z;
 	unsigned int	color;
 } t_point;
