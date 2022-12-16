@@ -6,11 +6,18 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:23:19 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/14 23:53:47 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/16 23:52:04 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/map.h"
+
+unsigned int	count_cols(char *line)
+{
+	int	i;
+
+	
+}
 
 unsigned int	get_height(char *filename)
 {
@@ -20,6 +27,8 @@ unsigned int	get_height(char *filename)
 
 	height = 0;
 	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		exit(1);
 	line = ft_gnl(fd);
 	while (line)
 	{
@@ -40,6 +49,8 @@ unsigned int	get_width(char *filename)
 
 	i = 0;
 	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		exit(1);
 	line = ft_gnl(fd);
 	words = ft_split(line, ' ');
 	while (words[i] && words[i][0] != '\n')
