@@ -6,79 +6,46 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:23:19 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/16 23:52:04 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/17 13:08:07 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/map.h"
 
-unsigned int	count_cols(char *line)
+/* Calculates the map size and allocates the memory for it */
+void	map_init(char *filename, t_map *map)
 {
-	int	i;
+	char	*line;
+	int		width;
+	int		fd;
 
-	
-}
-
-unsigned int	get_height(char *filename)
-{
-	char			*line;
-	int				fd;
-	unsigned int	height;
-
-	height = 0;
+	map->height = 0;
+	ft_printf("Calculating map size...");
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		exit(1);
 	line = ft_gnl(fd);
 	while (line)
 	{
-		height++;
+		width = count_cols(line, ' ');
+		if (map->height == 0)
+			map->width = width;
+		if (map->width != width)
+			exit(2);
+		map->height++;
 		free(line);
 		line = ft_gnl(fd);
 	}
 	free(line);
-	return (height);
+	map->len = map->height * map->width;
+	map->points = ft_calloc(map->height * map->width, sizeof(t_point));
+	close(fd);
 }
 
-unsigned int	get_width(char *filename)
-{
-	char			*line;
-	int				fd;
-	char			**words;
-	unsigned int	i;
-
-	i = 0;
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-		exit(1);
-	line = ft_gnl(fd);
-	words = ft_split(line, ' ');
-	while (words[i] && words[i][0] != '\n')
-		i++;
-	free(line);
-	free_array(words);
-	return (i);
-}
-
-void	map_alloc(char *filename, t_map *map)
-{
-	int		i;
-
-	i = 0;
-	map->height = get_height(filename);
-	map->width = get_width(filename);
-	map->points = ft_calloc(map->height, sizeof(t_point *));
-	while (i < map->height)
-	{
-		map->points[i] = ft_calloc(map->width, sizeof(t_point));
-		i++;
-	}
-}
-
+/* Fill the points of the map */
 void	map_fill(char *filename, t_map *map)
 {
 	unsigned int	i;
-	unsigned int	j;
 	int				fd;
 	char			*line;
 	char			**cols;
@@ -86,20 +53,15 @@ void	map_fill(char *filename, t_map *map)
 	i = 0;
 	fd = open(filename, O_RDONLY);
 	line = ft_gnl(fd);
+	ft_printf("\nFilling map points -> ");
 	while (line)
 	{
-		j = 0;
-		cols = ft_split(line, ' ');
-		while (cols[j] && cols[j][0] != '\n')
-		{
-			map->points[i][j].z = ft_atoi(cols[j]);
-			j++;
-		}
-		free_array(cols);
+		read_line(line, map, i);
 		free(line);
 		line = ft_gnl(fd);
 		i++;
 	}
+	ft_printf("\n");
 	free(line);
 	close(fd);
 }
@@ -107,12 +69,22 @@ void	map_fill(char *filename, t_map *map)
 int	main(int argc, char **argv)
 {
 	t_map	map;
+	int		i;
 
 	// hay que validar la entrada
-	map.height = get_height(argv[1]);
-	map.width = get_width(argv[1]);
-	map_alloc(argv[1], &map);
+	map_init(argv[1], &map);
+	//ft_printf("Alto: %d\nAncho: %d\nLongitud: %d\n\n", map.height, map.width, map.len);
+	i = map.len - 1;
 	map_fill(argv[1], &map);
-	ft_printf("Alto: %d\nAncho: %d\n", map.height, map.width);
+	ft_printf("X:%d\tY:%d\tZ:%d\t\n", map.points[i].x,
+		map.points[i].y, map.points[i].z);
+	/*
+	while (i < map.len)
+	{
+		ft_printf("X:%d\tY:%d\tZ:%d\t\n", map.points[i].x,
+			map.points[i].y, map.points[i].z);
+		i++;
+	}
+	*/
 	return (0);
 }
