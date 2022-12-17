@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 19:13:14 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/17 13:10:45 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/17 16:29:31 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void	map_fill(char *filename, t_map *map);
 /* map_utils.c */
 void	map_free(t_map *map);
 int		count_cols(char *line, char sep);
-void	read_row(char *line, t_map *map, int row);
+void	read_line(char *line, t_map *map, int line_n);
 
 #	endif

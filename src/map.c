@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:23:19 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/17 13:08:07 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/17 16:28:47 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	map_fill(char *filename, t_map *map)
 	close(fd);
 }
 
+/*
 int	main(int argc, char **argv)
 {
 	t_map	map;
@@ -78,13 +79,12 @@ int	main(int argc, char **argv)
 	map_fill(argv[1], &map);
 	ft_printf("X:%d\tY:%d\tZ:%d\t\n", map.points[i].x,
 		map.points[i].y, map.points[i].z);
-	/*
 	while (i < map.len)
 	{
 		ft_printf("X:%d\tY:%d\tZ:%d\t\n", map.points[i].x,
 			map.points[i].y, map.points[i].z);
 		i++;
 	}
-	*/
 	return (0);
 }
+*/

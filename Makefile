@@ -6,13 +6,13 @@
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 16:21:03 by franmart          #+#    #+#              #
-#    Updated: 2022/12/13 18:10:05 by franmart         ###   ########.fr        #
+#    Updated: 2022/12/17 16:30:19 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-CC = gcc 
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g3
 RM = rm -rf
 
@@ -22,11 +22,12 @@ MLX42_DIR = lib/MLX42
 LIBFT = lib/libft/libft.a
 LIBFT_DIR = lib/libft
 
-INCLUDES = -ldl -lglfw -pthread -lm 
+INCLUDES = -ldl -lglfw -pthread -lm
 
 SRC_DIR = src/
 _SRC = 	map.c\
 		map_utils.c\
+		main.c\
 		utils.c
 SRC = $(addprefix $(SRC_DIR), $(_SRC))
 
