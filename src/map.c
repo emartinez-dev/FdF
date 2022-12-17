@@ -6,11 +6,11 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:23:19 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/17 16:28:47 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/17 17:35:46 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/map.h"
+#include "../inc/fdf.h"
 
 /* Calculates the map size and allocates the memory for it */
 void	map_init(char *filename, t_map *map)
