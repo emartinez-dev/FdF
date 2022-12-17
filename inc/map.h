@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 19:13:14 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/16 18:07:45 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/17 13:10:45 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,26 @@ typedef struct s_point
 	int				y;
 	int				z;
 	unsigned int	color;
-} t_point;
+}	t_point;
 
-typedef	struct	s_map
+typedef struct s_map
 {
 	unsigned int	width;
 	unsigned int	height;
 	unsigned int	len;
 	t_point			*points;
-} t_map;
+}	t_map;
 
+/* utils.c */
 void	free_array(char **arr);
-int		count_cols(char *line);
-void	read_row(char *line, t_map *map, int row);
+
+/* map.c */
 void	map_init(char *filename, t_map *map);
-void	map_alloc(char *filename, t_map *map);
+void	map_fill(char *filename, t_map *map);
+
+/* map_utils.c */
 void	map_free(t_map *map);
-void	map_measure(char *filename, t_map *map);
+int		count_cols(char *line, char sep);
+void	read_row(char *line, t_map *map, int row);
 
 #	endif
-
