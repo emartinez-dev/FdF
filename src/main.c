@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 00:40:08 by W2Wizard          #+#    #+#             */
-/*   Updated: 2022/12/18 13:16:07 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/18 13:56:17 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int32_t	main(int argc, char **argv)
 	mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!mlx)
 		exit(EXIT_FAILURE);
-	g_img = mlx_new_image(mlx, WIDTH * map.zoom, HEIGHT * map.zoom);
+	g_img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	// el tamaño de la imagen no está bien, debería depender del tamaño del mapa
 	draw_map(&map, g_img, mlx);
 	mlx_loop_hook(mlx, &hook, mlx);
 	mlx_loop(mlx);

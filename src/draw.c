@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:34:40 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/18 13:11:43 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/18 13:52:05 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	isometric(t_point *point)
 	//ft_printf("x_new: %d\ty_new:%d\n\n", point->x, point->y);
 }
 
-void	bresenham(t_point p0, t_point p1, mlx_image_t *img)
+void	bresenham(t_point p0, t_point p1, mlx_image_t *img, t_map *map)
 {
 	int	dx;
 	int	dy;
@@ -42,7 +42,7 @@ void	bresenham(t_point p0, t_point p1, mlx_image_t *img)
 	error = dx + dy;
 	while (1)
 	{
-		mlx_put_pixel(img, p0.x + 600, p0.y + 200, 255);
+		mlx_put_pixel(img, p0.x + 500, p0.y + 200, 255);
 		if (p0.x == p1.x && p0.y == p1.y) break;
 		if (2 * error >= dy)
 		{
@@ -67,9 +67,9 @@ void	draw_map(t_map *map, mlx_image_t *g_img, mlx_t *mlx)
 	while (i < map->len)
 	{
 		if (map->points[i].x < (map->width - 1) * map->zoom)
-			bresenham(map->points[i], map->points[i + 1], g_img);
+			bresenham(map->points[i], map->points[i + 1], g_img, map);
 		if (map->points[i].y < (map->height - 1) * map->zoom)
-			bresenham(map->points[i], map->points[i + map->width], g_img);
+			bresenham(map->points[i], map->points[i + map->width], g_img, map);
 		i++;
 	}
 	mlx_image_to_window(mlx, g_img, 0, 0);
