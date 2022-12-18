@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:34:40 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/18 11:13:03 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/18 13:11:43 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	bresenham(t_point p0, t_point p1, mlx_image_t *img)
 	error = dx + dy;
 	while (1)
 	{
-		mlx_put_pixel(img, p0.x + 400, p0.y + 300, 255);
+		mlx_put_pixel(img, p0.x + 600, p0.y + 200, 255);
 		if (p0.x == p1.x && p0.y == p1.y) break;
 		if (2 * error >= dy)
 		{
@@ -66,9 +66,9 @@ void	draw_map(t_map *map, mlx_image_t *g_img, mlx_t *mlx)
 	i = 0;
 	while (i < map->len)
 	{
-		if (map->points[i].x < (map->width - 1) * ZOOM)
+		if (map->points[i].x < (map->width - 1) * map->zoom)
 			bresenham(map->points[i], map->points[i + 1], g_img);
-		if (map->points[i].y < (map->height - 1) * ZOOM)
+		if (map->points[i].y < (map->height - 1) * map->zoom)
 			bresenham(map->points[i], map->points[i + map->width], g_img);
 		i++;
 	}

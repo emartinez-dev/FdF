@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:23:19 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/18 11:12:18 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/18 13:03:23 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	map_fill(char *filename, t_map *map)
 	char			*line;
 	char			**cols;
 
+	map_zoom(map);
 	i = 0;
 	fd = open(filename, O_RDONLY);
 	line = ft_gnl(fd);

@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 19:13:14 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/18 10:55:37 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/18 12:42:49 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 
 # define WIDTH 1000
 # define HEIGHT 1000
-# define ZOOM 4
 # define ANGLE 0.52
 
 typedef struct s_point
@@ -38,6 +37,8 @@ typedef struct s_map
 	unsigned int	width;
 	unsigned int	height;
 	unsigned int	len;
+	int				zoom;
+	int				z_scale;
 	t_point			*points;
 }	t_map;
 
@@ -55,5 +56,6 @@ void	map_fill(char *filename, t_map *map);
 void	map_free(t_map *map);
 int		count_cols(char *line, char sep);
 void	read_line(char *line, t_map *map, int line_n);
+void	map_zoom(t_map *map);
 
 #	endif
