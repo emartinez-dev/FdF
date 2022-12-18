@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:34:40 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/18 13:52:05 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/18 14:04:43 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	bresenham(t_point p0, t_point p1, mlx_image_t *img, t_map *map)
 	int	sx;
 	int	sy;
 
-	isometric(&p0);
-	isometric(&p1);
+	//isometric(&p0);
+	//isometric(&p1);
 	sx = p0.x < p1.x ? 1 : -1;
 	sy = p0.y < p1.y ? 1 : -1;
 	dx = abs(p1.x - p0.x);
@@ -42,7 +42,7 @@ void	bresenham(t_point p0, t_point p1, mlx_image_t *img, t_map *map)
 	error = dx + dy;
 	while (1)
 	{
-		mlx_put_pixel(img, p0.x + 500, p0.y + 200, 255);
+		mlx_put_pixel(img, p0.x, p0.y, 255);
 		if (p0.x == p1.x && p0.y == p1.y) break;
 		if (2 * error >= dy)
 		{
