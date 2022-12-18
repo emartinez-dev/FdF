@@ -6,12 +6,11 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:03:55 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/17 20:38:03 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/18 10:51:02 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
-#define ZOOM 20
 
 void	map_free(t_map *map)
 {

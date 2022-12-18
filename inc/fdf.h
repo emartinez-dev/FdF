@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 19:13:14 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/17 16:29:31 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/18 10:55:37 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	ifndef MAP_H
 # define MAP_H
+
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
 # include "../lib/libft/include/libft.h"
+# include "../lib/MLX42/include/MLX42/MLX42.h"
+# include <math.h>
+
+# define WIDTH 1000
+# define HEIGHT 1000
+# define ZOOM 4
+# define ANGLE 0.52
 
 typedef struct s_point
 {
@@ -32,6 +40,9 @@ typedef struct s_map
 	unsigned int	len;
 	t_point			*points;
 }	t_map;
+
+/* draw.c */
+void	draw_map(t_map *map, mlx_image_t *g_img, mlx_t *mlx);
 
 /* utils.c */
 void	free_array(char **arr);

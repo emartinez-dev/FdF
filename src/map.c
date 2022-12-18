@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:23:19 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/17 17:35:46 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/18 11:12:18 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ int	main(int argc, char **argv)
 
 	// hay que validar la entrada
 	map_init(argv[1], &map);
-	//ft_printf("Alto: %d\nAncho: %d\nLongitud: %d\n\n", map.height, map.width, map.len);
+	ft_printf("Alto: %d\nAncho: %d\nLongitud: %d\n\n",
+		map.height, map.width, map.len);
 	i = map.len - 1;
 	map_fill(argv[1], &map);
 	ft_printf("X:%d\tY:%d\tZ:%d\t\n", map.points[i].x,
