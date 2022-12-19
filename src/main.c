@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 00:40:08 by W2Wizard          #+#    #+#             */
-/*   Updated: 2022/12/19 15:55:35 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/19 17:39:25 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int32_t	main(int argc, char **argv)
 	mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!mlx)
 		exit(EXIT_FAILURE);
-	g_img = mlx_new_image(mlx, map.width * map.zoom, map.height * map.zoom);
+	g_img = mlx_new_image(mlx, map.width * map.zoom * 2, map.height * map.zoom * 2);
 	// ya está el mapa en 2D con un tamaño correcto en todos los casos de mapa
 	// TODO: hacer que no se salga cuando transforme los píxeles de 2D a 3D
 	draw_map(&map, g_img, mlx);

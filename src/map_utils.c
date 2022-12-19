@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:03:55 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/18 14:16:09 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/19 17:45:58 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	read_line(char *line, t_map *map, int line_n)
 		map->points[start_index + i].x = i * map->zoom;
 		map->points[start_index + i].y = line_n * map->zoom;
 		map->points[start_index + i].z = ft_atoi(cols[i]) * map->z_scale;
+		map->points[start_index + i].color = get_color(cols[i]);
 		// TODO: implement color loading
 		// load_color(cols[i]);
 		//map->points[start_index + i].color = i;
@@ -78,8 +79,8 @@ void	map_zoom(t_map *map)
 	int	width_zoom;
 	int	height_zoom;
 
-	width_zoom = WIDTH / map->width;
-	height_zoom = HEIGHT / map->height;
+	width_zoom = WIDTH / map->width / 2;
+	height_zoom = HEIGHT / map->height / 2;
 	ft_printf("\nAncho: %d\tZoom ancho: %d\nAlto: %d\tZoom alto: %d\n",
 		map->height, height_zoom, map->width, width_zoom);
 	if (width_zoom <= height_zoom)
