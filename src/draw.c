@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:34:40 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/18 14:04:43 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/19 15:55:15 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@ void	isometric(t_point *point)
 	point->x = x1;
 	point->y = y1;
 	//ft_printf("x_new: %d\ty_new:%d\n\n", point->x, point->y);
+}
+
+int	pixel_limits(t_point *point)
+{
+	if (point->x < 0 || point->x > WIDTH)
+		return (0);
+	if (point->y < 0 || point->y > HEIGHT)
+		return (0);
+	return (1);
 }
 
 void	bresenham(t_point p0, t_point p1, mlx_image_t *img, t_map *map)
@@ -42,7 +51,8 @@ void	bresenham(t_point p0, t_point p1, mlx_image_t *img, t_map *map)
 	error = dx + dy;
 	while (1)
 	{
-		mlx_put_pixel(img, p0.x, p0.y, 255);
+		if (pixel_limits(&p0))
+			mlx_put_pixel(img, p0.x, p0.y, 255);
 		if (p0.x == p1.x && p0.y == p1.y) break;
 		if (2 * error >= dy)
 		{
