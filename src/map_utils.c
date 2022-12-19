@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:03:55 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/19 17:45:58 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/19 19:33:56 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@ void	read_line(char *line, t_map *map, int line_n)
 		map->points[start_index + i].y = line_n * map->zoom;
 		map->points[start_index + i].z = ft_atoi(cols[i]) * map->z_scale;
 		map->points[start_index + i].color = get_color(cols[i]);
-		// TODO: implement color loading
-		// load_color(cols[i]);
-		//map->points[start_index + i].color = i;
 		i++;
 	}
 	free_array(cols);

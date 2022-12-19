@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 00:40:08 by W2Wizard          #+#    #+#             */
-/*   Updated: 2022/12/19 17:39:25 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/19 19:34:59 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@ void	hook(void *param)
 		g_img->instances[0].x += 1;
 }
 
-int get_rgba(int r, int g, int b, int a)
-{
-    return (r << 24 | g << 16 | b << 8 | a);
-}
-
 int32_t	main(int argc, char **argv)
 {
 	mlx_t		*mlx;
@@ -43,16 +38,11 @@ int32_t	main(int argc, char **argv)
 
 	map_init(argv[1], &map);
 	map_fill(argv[1], &map);
-	//ft_printf("X:%d\tY:%d\tZ:%d\t\n", map.points[i].x,
-		//map.points[i].y, map.points[i].z);
-
-	//inicio MLX loop
 	mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!mlx)
 		exit(EXIT_FAILURE);
-	g_img = mlx_new_image(mlx, map.width * map.zoom * 2, map.height * map.zoom * 2);
-	// ya está el mapa en 2D con un tamaño correcto en todos los casos de mapa
-	// TODO: hacer que no se salga cuando transforme los píxeles de 2D a 3D
+	g_img = mlx_new_image(mlx, map.width * map.zoom * 2,
+		map.height * map.zoom * 2);
 	draw_map(&map, g_img, mlx);
 	mlx_loop_hook(mlx, &hook, mlx);
 	mlx_loop(mlx);

@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:42:09 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/19 18:11:47 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/19 19:16:12 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,42 +21,25 @@ unsigned int	get_color(char *line)
 	{
 		arr = ft_split(line, ',');
 		color = ft_atoi_base(arr[1], "0123456789abcdef");
-		color = dec_to_rgba(color);
+		color = (color << 8) | 0xff;
+		color = hex_to_rgba(color);
 		free_array(arr);
 	}
 	else
-		color = 128;
+		color = hex_to_rgba(0x000000FF);
 	return (color);
 }
 
-unsigned int	dec_to_hex(unsigned int n)
+uint32_t	hex_to_rgba(unsigned int hex)
 {
-	unsigned int	hex;
-	unsigned int	base;
-	unsigned int	remainder;
+	int	r;
+	int	g;
+	int	b;
+	int	a;
 
-	hex = 0;
-	base = 1;
-	while (n > 0)
-	{
-    	remainder = n % 16;
-    	n /= 16;
-    	hex += remainder * base;
-    	base *= 10;
-	}
-	return hex;
-}
-
-unsigned int	dec_to_rgba(unsigned int n)
-{
-	unsigned int	r;
-	unsigned int	g;
-	unsigned int	b;
-	unsigned int	hex;
-
-	hex = dec_to_hex(n);
-	r = (hex & 0xff000000) >> 24;
-	g = (hex & 0xff0000) >> 16;
-	b = (hex & 0xff00) >> 8;
-	return ((r << 16) | (g << 8) | b);
+	r = (hex >> 24) & 0xFF;
+	g = (hex >> 16) & 0xFF;
+	b = (hex >> 8) & 0xFF;
+	a = hex & 0xFF;
+	return ((r << 24) | (g << 16) | (b << 8) | a);
 }
