@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 19:13:14 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/19 19:01:38 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/20 18:41:59 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include <math.h>
 
-# define WIDTH 1000
-# define HEIGHT 1000
-# define ANGLE 0.54
+# define WIDTH 800
+# define HEIGHT 800
+# define ANGLE 0.523599 // 30 degrees to rad
 
 typedef struct s_point
 {

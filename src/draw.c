@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:34:40 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/19 17:46:56 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/20 18:44:25 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ void	isometric_limits(t_map *map, t_point *points)
 	while (i < map->len)
 	{
 		x1 = (points[i].x - points[i].y) * cos(ANGLE);
-		y1 = (points[i].x + points[i].y) * sin(ANGLE)
-			- points[i].z;
+		y1 = (points[i].x + points[i].y) * sin(ANGLE) - points[i].z;
 		if (x1 < map->x_min)
 			map->x_min = x1;
 		if (y1 < map->y_min)
