@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 00:40:08 by W2Wizard          #+#    #+#             */
-/*   Updated: 2022/12/20 20:38:45 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/20 22:00:41 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ int32_t	main(int argc, char **argv)
 
 	map_init(argv[1], &map);
 	map_fill(argv[1], &map);
+	map.angle = 0.54;
 	mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!mlx)
 		exit(EXIT_FAILURE);
-	g_img = mlx_new_image(mlx, map.width * map.zoom * 2,
-		map.height * map.zoom * 2);
+	g_img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	draw_map(&map, g_img, mlx);
 	mlx_loop_hook(mlx, &hook, mlx);
 	mlx_loop(mlx);

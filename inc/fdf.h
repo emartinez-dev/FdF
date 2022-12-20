@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 19:13:14 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/20 18:41:59 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/20 21:58:47 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 
 # define WIDTH 800
 # define HEIGHT 800
-# define ANGLE 0.523599 // 30 degrees to rad
 
 typedef struct s_point
 {
@@ -39,8 +38,11 @@ typedef struct s_map
 	unsigned int	len;
 	int				zoom;
 	int				z_scale;
-	int				x_min;
-	int				y_min;
+	int				world_x;
+	int				world_y;
+	double			angle;
+	double			origin_x;
+	double			origin_y;
 	t_point			*points;
 }	t_map;
 
@@ -50,6 +52,7 @@ uint32_t		hex_to_rgba(unsigned int hex);
 
 /* draw.c */
 void	draw_map(t_map *map, mlx_image_t *g_img, mlx_t *mlx);
+void	isometric(t_point *p, t_map *map);
 
 /* utils.c */
 void	free_array(char **arr);

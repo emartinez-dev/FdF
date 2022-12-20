@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:03:55 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/19 19:33:56 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/20 22:49:56 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void	map_zoom(t_map *map)
 	int	width_zoom;
 	int	height_zoom;
 
-	width_zoom = WIDTH / map->width / 2;
-	height_zoom = HEIGHT / map->height / 2;
+	width_zoom = sqrt(WIDTH / map->width / 2);
+	height_zoom = sqrt(HEIGHT / map->height / 2);
 	ft_printf("\nAncho: %d\tZoom ancho: %d\nAlto: %d\tZoom alto: %d\n",
 		map->height, height_zoom, map->width, width_zoom);
 	if (width_zoom <= height_zoom)

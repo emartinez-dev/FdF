@@ -6,43 +6,12 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:34:40 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/20 19:36:39 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/20 22:51:28 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
-
-void	isometric_limits(t_map *map, t_point *points)
-{
-	int		i;
-	double	x1;
-	double	y1;
-
-	i = 0;
-	while (i < map->len)
-	{
-		x1 = (points[i].x - points[i].y) * cos(ANGLE);
-		y1 = (points[i].x + points[i].y) * sin(ANGLE) - points[i].z;
-		if (x1 < map->x_min)
-			map->x_min = x1;
-		if (y1 < map->y_min)
-			map->y_min = y1;
-		i++;
-	}
-}
-
-void	isometric(t_point *point, int min_x, int min_y)
-{
-	float	x1;
-	float	y1;
-
-	x1 = (point->x - point->y) * cos(ANGLE) + abs(min_x);
-	y1 = (point->x + point->y) * sin(ANGLE) - point->z + abs(min_y);
-	//ft_printf("x_og: %d\ty_og: %d\n", point->x, point->y);
-	point->x = x1;
-	point->y = y1;
-	//ft_printf("x_new: %d\ty_new:%d\n\n", point->x, point->y);
-}
+#include <stdio.h>
 
 int	pixel_limits(t_point *point)
 {
@@ -61,8 +30,8 @@ void	bresenham(t_point p0, t_point p1, mlx_image_t *img, t_map *map)
 	int	sx;
 	int	sy;
 
-	isometric(&p0, map->x_min, map->y_min);
-	isometric(&p1, map->x_min, map->y_min);
+	isometric(&p0, map);
+	isometric(&p1, map);
 	sx = p0.x < p1.x ? 1 : -1;
 	sy = p0.y < p1.y ? 1 : -1;
 	dx = abs(p1.x - p0.x);
@@ -89,15 +58,46 @@ void	bresenham(t_point p0, t_point p1, mlx_image_t *img, t_map *map)
 	}
 }
 
+void	world_center(t_map *map)
+{
+	map->world_x = WIDTH / 2;
+	map->world_y = HEIGHT / 2;
+}
+
+
+void	origin_point(t_map *map, t_point focal_p)
+{
+	double	x;
+	double	y;
+
+	x = (focal_p.x - focal_p.y) * cos(map->angle) * map->zoom;
+	y = ((focal_p.x + focal_p.y + 1) * sin(map->angle) - focal_p.z) * map->zoom;
+	map->origin_x = x;
+	map->origin_y = y;
+	printf("ox %f oy %f\n", map->origin_x, map->origin_y);
+}
+
+void	isometric(t_point *p, t_map *map)
+{
+	int	x;
+	int	y;
+
+	//printf("Antes: pixel: x%dy%d\n", p->x, p->y);
+	x = (p->x - p->y) * cos(map->angle) * map->zoom
+		- map->origin_x + map->world_x;
+	y = ((p->x + p->y) * sin(map->angle) - p->z) * map->zoom
+		- map->origin_y + map->world_y;
+	p->x = x;
+	p->y = y;
+}
+
 void	draw_map(t_map *map, mlx_image_t *g_img, mlx_t *mlx)
 {
 	int	i;
 
 	i = 0;
-	map->x_min = 0;
-	map->y_min = 0;
-	isometric_limits(map, map->points);
-	ft_printf("Min x: %d - Min y: %d", map->x_min, map->y_min);
+	world_center(map);
+	origin_point(map, map->points[(map->width / 3)]);
 	while (i < map->len)
 	{
 		if (map->points[i].x < (map->width - 1) * map->zoom)
