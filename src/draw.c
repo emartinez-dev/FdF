@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:34:40 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/20 18:44:25 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:36:39 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void	bresenham(t_point p0, t_point p1, mlx_image_t *img, t_map *map)
 	error = dx + dy;
 	while (1)
 	{
-		//if (pixel_limits(&p0))
-		//	mlx_put_pixel(img, p0.x, p0.y, 255);
-		mlx_put_pixel(img, p0.x, p0.y, p0.color);
+		if (pixel_limits(&p0))
+			mlx_put_pixel(img, p0.x, p0.y, p0.color);
+		//mlx_put_pixel(img, p0.x, p0.y, p0.color);
 		if (p0.x == p1.x && p0.y == p1.y) break;
 		if (2 * error >= dy)
 		{

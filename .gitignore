@@ -2,6 +2,7 @@
 *.swp
 # Prerequisites
 *.d
+fdf
 
 # Object files
 *.o
