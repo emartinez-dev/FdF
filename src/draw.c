@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:34:40 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/20 22:51:28 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/21 16:25:29 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,10 @@ void	world_center(t_map *map)
 	map->world_y = HEIGHT / 2;
 }
 
-
 void	origin_point(t_map *map, t_point focal_p)
 {
-	double	x;
-	double	y;
-
-	x = (focal_p.x - focal_p.y) * cos(map->angle) * map->zoom;
-	y = ((focal_p.x + focal_p.y + 1) * sin(map->angle) - focal_p.z) * map->zoom;
-	map->origin_x = x;
-	map->origin_y = y;
+	map->origin_x = (focal_p.x - focal_p.y) * cos(map->angle) * map->zoom;
+	map->origin_y = ((focal_p.x + focal_p.y + 1) * sin(map->angle) - focal_p.z) * map->zoom;
 	printf("ox %f oy %f\n", map->origin_x, map->origin_y);
 }
 
@@ -89,6 +83,7 @@ void	isometric(t_point *p, t_map *map)
 		- map->origin_y + map->world_y;
 	p->x = x;
 	p->y = y;
+	//printf("Despues: pixel: x%dy%d\n", p->x, p->y);
 }
 
 void	draw_map(t_map *map, mlx_image_t *g_img, mlx_t *mlx)
@@ -96,6 +91,7 @@ void	draw_map(t_map *map, mlx_image_t *g_img, mlx_t *mlx)
 	int	i;
 
 	i = 0;
+	map->angle = 0.4625;
 	world_center(map);
 	origin_point(map, map->points[(map->width / 3)]);
 	while (i < map->len)
