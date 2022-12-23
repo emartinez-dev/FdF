@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:34:40 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/21 16:25:29 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/23 19:58:28 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,8 @@ void	world_center(t_map *map)
 
 void	origin_point(t_map *map, t_point focal_p)
 {
-	map->origin_x = (focal_p.x - focal_p.y) * cos(map->angle) * map->zoom;
-	map->origin_y = ((focal_p.x + focal_p.y + 1) * sin(map->angle) - focal_p.z) * map->zoom;
-	printf("ox %f oy %f\n", map->origin_x, map->origin_y);
+	map->origin_x = (focal_p.x - focal_p.y) * cos(ISO_ANGLE);
+	map->origin_y = ((focal_p.x + focal_p.y + 1) * sin(ISO_ANGLE) - focal_p.z);
 }
 
 void	isometric(t_point *p, t_map *map)
@@ -77,9 +76,9 @@ void	isometric(t_point *p, t_map *map)
 	int	y;
 
 	//printf("Antes: pixel: x%dy%d\n", p->x, p->y);
-	x = (p->x - p->y) * cos(map->angle) * map->zoom
+	x = (p->x - p->y) * cos(ISO_ANGLE)
 		- map->origin_x + map->world_x;
-	y = ((p->x + p->y) * sin(map->angle) - p->z) * map->zoom
+	y = ((p->x + p->y) * sin(ISO_ANGLE) - p->z)
 		- map->origin_y + map->world_y;
 	p->x = x;
 	p->y = y;
@@ -91,9 +90,9 @@ void	draw_map(t_map *map, mlx_image_t *g_img, mlx_t *mlx)
 	int	i;
 
 	i = 0;
-	map->angle = 0.4625;
 	world_center(map);
-	origin_point(map, map->points[(map->width / 3)]);
+	origin_point(map, map->points[
+		(map->width / 2 + map->height / 2 * map->width)]);
 	while (i < map->len)
 	{
 		if (map->points[i].x < (map->width - 1) * map->zoom)

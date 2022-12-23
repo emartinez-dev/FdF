@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 19:13:14 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/20 21:58:47 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/23 20:04:03 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@
 # include "../lib/libft/include/libft.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include <math.h>
+# include <stdio.h>
 
-# define WIDTH 800
-# define HEIGHT 800
+# define WIDTH 1200
+# define HEIGHT 1000
+# define ISO_ANGLE 0.463646716
 
 typedef struct s_point
 {
@@ -36,7 +38,7 @@ typedef struct s_map
 	unsigned int	width;
 	unsigned int	height;
 	unsigned int	len;
-	int				zoom;
+	double			zoom;
 	int				z_scale;
 	int				world_x;
 	int				world_y;

@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:03:55 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/20 22:49:56 by franmart         ###   ########.fr       */
+/*   Updated: 2022/12/23 20:10:18 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,18 +73,16 @@ void	read_line(char *line, t_map *map, int line_n)
 
 void	map_zoom(t_map *map)
 {
-	int	width_zoom;
-	int	height_zoom;
+	double	width_zoom;
+	double	height_zoom;
 
-	width_zoom = sqrt(WIDTH / map->width / 2);
-	height_zoom = sqrt(HEIGHT / map->height / 2);
-	ft_printf("\nAncho: %d\tZoom ancho: %d\nAlto: %d\tZoom alto: %d\n",
+	width_zoom = WIDTH / map->width / 2;
+	height_zoom = (HEIGHT - 300) / map->height;
+	printf("\nAncho: %d\tZoom ancho: %f\nAlto: %d\tZoom alto: %f\n",
 		map->height, height_zoom, map->width, width_zoom);
 	if (width_zoom <= height_zoom)
-		map->zoom = height_zoom;
-	else
 		map->zoom = width_zoom;
-	if (map->zoom < 1)
-		map->zoom = 1;
+	else
+		map->zoom = height_zoom;
 	map->z_scale = 1;
 }
