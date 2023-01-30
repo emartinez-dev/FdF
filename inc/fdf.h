@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 19:13:14 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/23 20:04:03 by franmart         ###   ########.fr       */
+/*   Updated: 2023/01/30 10:56:21 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,6 @@ uint32_t		hex_to_rgba(unsigned int hex);
 /* draw.c */
 void	draw_map(t_map *map, mlx_image_t *g_img, mlx_t *mlx);
 void	isometric(t_point *p, t_map *map);
-
-/* utils.c */
-void	free_array(char **arr);
 
 /* map.c */
 void	map_init(char *filename, t_map *map);

@@ -6,7 +6,7 @@
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 16:21:03 by franmart          #+#    #+#              #
-#    Updated: 2022/12/19 17:46:32 by franmart         ###   ########.fr        #
+#    Updated: 2023/01/30 10:56:49 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,8 @@ _SRC = 	map.c\
 		colors.c\
 		map_utils.c\
 		draw.c\
-		main.c\
-		utils.c
+		main.c
+
 SRC = $(addprefix $(SRC_DIR), $(_SRC))
 
 OBJ = $(SRC:.c=.o)
@@ -42,10 +42,6 @@ ${NAME}: ${OBJ}
 
 %.o: %.c
 	${CC} ${FLAGS} -c $^ -o $@ -g3
-
-# debug settings:
-# ${CC} ${FLAGS} -c $^ -o $@ -g
-# añadir -g a los cflags, creo que -g3
 
 all: ${NAME}
 
