@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:03:55 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/23 20:10:18 by franmart         ###   ########.fr       */
+/*   Updated: 2023/01/30 10:56:17 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	read_line(char *line, t_map *map, int line_n)
 		map->points[start_index + i].color = get_color(cols[i]);
 		i++;
 	}
-	free_array(cols);
+	ft_free_array(cols);
 }
 
 void	map_zoom(t_map *map)

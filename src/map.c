@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:23:19 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/18 13:03:23 by franmart         ###   ########.fr       */
+/*   Updated: 2023/01/30 10:47:25 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	map_init(char *filename, t_map *map)
 	}
 	free(line);
 	map->len = map->height * map->width;
-	map->points = ft_calloc(map->height * map->width, sizeof(t_point));
+	map->points = ft_calloc(map->len, sizeof(t_point));
 	close(fd);
 }
 
@@ -66,27 +66,3 @@ void	map_fill(char *filename, t_map *map)
 	free(line);
 	close(fd);
 }
-
-/*
-int	main(int argc, char **argv)
-{
-	t_map	map;
-	int		i;
-
-	// hay que validar la entrada
-	map_init(argv[1], &map);
-	ft_printf("Alto: %d\nAncho: %d\nLongitud: %d\n\n",
-		map.height, map.width, map.len);
-	i = map.len - 1;
-	map_fill(argv[1], &map);
-	ft_printf("X:%d\tY:%d\tZ:%d\t\n", map.points[i].x,
-		map.points[i].y, map.points[i].z);
-	while (i < map.len)
-	{
-		ft_printf("X:%d\tY:%d\tZ:%d\t\n", map.points[i].x,
-			map.points[i].y, map.points[i].z);
-		i++;
-	}
-	return (0);
-}
-*/

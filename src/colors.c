@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:42:09 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/19 19:16:12 by franmart         ###   ########.fr       */
+/*   Updated: 2023/01/30 10:56:09 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ unsigned int	get_color(char *line)
 		color = ft_atoi_base(arr[1], "0123456789abcdef");
 		color = (color << 8) | 0xff;
 		color = hex_to_rgba(color);
-		free_array(arr);
+		ft_free_array(arr);
 	}
 	else
 		color = hex_to_rgba(0x000000FF);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/31 00:40:08 by W2Wizard          #+#    #+#             */
-/*   Updated: 2022/12/21 16:24:33 by franmart         ###   ########.fr       */
+/*   Created: 2023/01/30 10:44:23 by franmart          #+#    #+#             */
+/*   Updated: 2023/01/30 10:54:43 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	hook(void *param)
 	mlx_t	*mlx;
 
 	mlx = param;
-	if (mlx_is_key_down(mlx, MLX_KEY_Q))
+	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx);
 	if (mlx_is_key_down(mlx, MLX_KEY_UP))
 		g_img->instances[0].y -= 1;
@@ -38,10 +38,12 @@ int32_t	main(int argc, char **argv)
 
 	map_init(argv[1], &map);
 	map_fill(argv[1], &map);
-	mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
+	mlx = mlx_init(WIDTH, HEIGHT, "franmart-FdF", true);
 	if (!mlx)
 		exit(EXIT_FAILURE);
 	g_img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	if (!g_img)
+		exit(EXIT_FAILURE);
 	draw_map(&map, g_img, mlx);
 	mlx_loop_hook(mlx, &hook, mlx);
 	mlx_loop(mlx);
