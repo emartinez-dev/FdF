@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:44:23 by franmart          #+#    #+#             */
-/*   Updated: 2023/01/30 10:54:43 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/04 13:41:24 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int32_t	main(int argc, char **argv)
 	mlx_t		*mlx;
 	t_map		map;
 
+	if (argc != 2)
+		return (1);
 	map_init(argv[1], &map);
 	map_fill(argv[1], &map);
 	mlx = mlx_init(WIDTH, HEIGHT, "franmart-FdF", true);

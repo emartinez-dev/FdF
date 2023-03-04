@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:03:55 by franmart          #+#    #+#             */
-/*   Updated: 2023/01/30 10:56:17 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/04 13:40:22 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	map_free(t_map *map)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < map->len)

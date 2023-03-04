@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:34:40 by franmart          #+#    #+#             */
-/*   Updated: 2022/12/23 19:58:28 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/04 13:40:58 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	isometric(t_point *p, t_map *map)
 
 void	draw_map(t_map *map, mlx_image_t *g_img, mlx_t *mlx)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	world_center(map);

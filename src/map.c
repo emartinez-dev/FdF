@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:23:19 by franmart          #+#    #+#             */
-/*   Updated: 2023/01/30 10:47:25 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/04 13:44:30 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 /* Calculates the map size and allocates the memory for it */
 void	map_init(char *filename, t_map *map)
 {
-	char	*line;
-	int		width;
-	int		fd;
+	unsigned int	width;
+	char			*line;
+	int				fd;
 
 	map->height = 0;
-	ft_printf("Calculating map size...");
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		exit(1);
+	ft_printf("Calculating map size...");
 	line = ft_gnl(fd);
 	while (line)
 	{
@@ -48,7 +48,6 @@ void	map_fill(char *filename, t_map *map)
 	unsigned int	i;
 	int				fd;
 	char			*line;
-	char			**cols;
 
 	map_zoom(map);
 	i = 0;
