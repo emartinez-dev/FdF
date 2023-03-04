@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:23:19 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/04 13:44:30 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/04 14:14:00 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void	map_init(char *filename, t_map *map)
 	while (line)
 	{
 		width = count_cols(line, ' ');
+		free(line);
 		if (map->height == 0)
 			map->width = width;
 		if (map->width != width)
 			exit(2);
 		map->height++;
-		free(line);
 		line = ft_gnl(fd);
 	}
 	free(line);
