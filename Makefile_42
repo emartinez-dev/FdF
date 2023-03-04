@@ -1,19 +1,19 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile_42                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 16:21:03 by franmart          #+#    #+#              #
-#    Updated: 2022/12/11 19:34:35 by franmart         ###   ########.fr        #
+#    Updated: 2023/03/04 13:39:16 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-CC = gcc 
-CFLAGS = -Wall -Wextra -Werror
+CC = gcc
+FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 MLX42 = lib/MLX42/libmlx42.a

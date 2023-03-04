@@ -6,14 +6,14 @@
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 16:21:03 by franmart          #+#    #+#              #
-#    Updated: 2023/01/30 10:56:49 by franmart         ###   ########.fr        #
+#    Updated: 2023/03/04 13:34:58 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3
+FLAGS = -Wall -Wextra -Werror -g3
 RM = rm -rf
 
 MLX42 = lib/MLX42/libmlx42.a
@@ -41,7 +41,7 @@ ${NAME}: ${OBJ}
 	$(CC) $(OBJ) -o $(NAME) $(MLX42) $(LIBFT) $(INCLUDES)
 
 %.o: %.c
-	${CC} ${FLAGS} -c $^ -o $@ -g3
+	${CC} ${FLAGS} -c $^ -o $@
 
 all: ${NAME}
 
