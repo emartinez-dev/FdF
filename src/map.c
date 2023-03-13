@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:23:19 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/04 14:14:00 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/13 10:10:37 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ void	map_init(char *filename, t_map *map)
 	int				fd;
 
 	map->height = 0;
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-		exit(1);
-	ft_printf("Calculating map size...");
+	fd = check_filename(filename);
 	line = ft_gnl(fd);
 	while (line)
 	{
@@ -32,14 +29,16 @@ void	map_init(char *filename, t_map *map)
 		if (map->height == 0)
 			map->width = width;
 		if (map->width != width)
-			exit(2);
+			ft_exit(ERR_MAPWIDTH);
 		map->height++;
 		line = ft_gnl(fd);
 	}
 	free(line);
-	map->len = map->height * map->width;
-	map->points = ft_calloc(map->len, sizeof(t_point));
 	close(fd);
+	map->len = map->height * map->width;
+	if (map->len == 0)
+		ft_exit(ERR_MAPEMPTY);
+	map->points = ft_calloc(map->len, sizeof(t_point));
 }
 
 /* Fill the points of the map */
@@ -64,4 +63,17 @@ void	map_fill(char *filename, t_map *map)
 	ft_printf("\n");
 	free(line);
 	close(fd);
+}
+
+int	check_filename(char *filename)
+{
+	int	fd;
+
+	if (!ft_strnstr(filename, ".fdf", ft_strlen(filename)))
+		ft_exit(ERR_FILEEXT);
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		ft_exit(ERR_FILEOPEN);
+	ft_printf("Calculating map size...");
+	return (fd);
 }

@@ -6,12 +6,12 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 19:13:14 by franmart          #+#    #+#             */
-/*   Updated: 2023/01/30 10:56:21 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/13 10:07:55 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	ifndef MAP_H
-# define MAP_H
+#	ifndef FDF_H
+# define FDF_H
 
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -19,11 +19,21 @@
 # include "../lib/libft/include/libft.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include <math.h>
+# include <errno.h>
 # include <stdio.h>
 
+/* Constants */
 # define WIDTH 1200
 # define HEIGHT 1000
 # define ISO_ANGLE 0.463646716
+
+/* Error messages */
+# define ERR_ARGS "ERROR: you must enter one (1) parameter"
+# define ERR_FILEEXT "ERROR: file extension must be .fdf"
+# define ERR_FILEOPEN "ERROR: file could not be open"
+# define ERR_MAPNOTVALID "ERROR: map could not be parsed"
+# define ERR_MAPEMPTY "ERROR: map is empty"
+# define ERR_MAPWIDTH "ERROR: map width must be equal on all lines"
 
 typedef struct s_point
 {
@@ -59,11 +69,15 @@ void	isometric(t_point *p, t_map *map);
 /* map.c */
 void	map_init(char *filename, t_map *map);
 void	map_fill(char *filename, t_map *map);
+int		check_filename(char *filename);
 
 /* map_utils.c */
 void	map_free(t_map *map);
 int		count_cols(char *line, char sep);
 void	read_line(char *line, t_map *map, int line_n);
 void	map_zoom(t_map *map);
+
+/* error.c */
+void ft_exit(char *str);
 
 #	endif

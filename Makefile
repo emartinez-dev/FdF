@@ -6,7 +6,7 @@
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 16:21:03 by franmart          #+#    #+#              #
-#    Updated: 2023/03/04 13:34:58 by franmart         ###   ########.fr        #
+#    Updated: 2023/03/13 09:33:55 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ _SRC = 	map.c\
 		colors.c\
 		map_utils.c\
 		draw.c\
+		error.c\
 		main.c
 
 SRC = $(addprefix $(SRC_DIR), $(_SRC))

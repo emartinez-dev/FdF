@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:03:55 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/04 13:40:22 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/13 10:08:17 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ int	count_cols(char *line, char sep)
 
 	i = 0;
 	cols = 0;
-	while (line[i])
+	while (line[i] && line[i] != '\n')
 	{
 		if (line[i] == sep)
 		{
-			while ((line[i] == sep || line[i] == '\n') && line[i])
+			while (line[i] && (line[i] == sep || line[i] == '\n'))
 				i++;
 		}
 		else
 		{
-			while (line[i] != sep && line[i])
+			while (line[i] && line[i] != sep)
 				i++;
 			cols++;
 		}
@@ -78,7 +78,7 @@ void	map_zoom(t_map *map)
 
 	width_zoom = WIDTH / map->width / 2;
 	height_zoom = (HEIGHT - 300) / map->height;
-	printf("\nAncho: %d\tZoom ancho: %f\nAlto: %d\tZoom alto: %f\n",
+	ft_printf("\nAlto: %d\tZoom alto: %f\nAncho: %d\tZoom ancho: %f\n",
 		map->height, height_zoom, map->width, width_zoom);
 	if (width_zoom <= height_zoom)
 		map->zoom = width_zoom;
