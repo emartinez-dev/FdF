@@ -6,7 +6,7 @@
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 16:21:03 by franmart          #+#    #+#              #
-#    Updated: 2023/03/13 09:33:55 by franmart         ###   ########.fr        #
+#    Updated: 2023/03/14 19:45:07 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ INCLUDES = -ldl -lglfw -pthread -lm
 SRC_DIR = src/
 _SRC = 	map.c\
 		colors.c\
+		camera.c\
+		projections.c\
 		map_utils.c\
 		draw.c\
 		error.c\
