@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 19:13:14 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/14 20:36:58 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:03:33 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_map
 
 typedef struct s_cam
 {
-	int		zoom;
+	float	zoom;
 	double	z_scale;
 	int		offset_x;
 	int		offset_y;
@@ -82,27 +82,26 @@ unsigned int	get_color(char *line);
 uint32_t		hex_to_rgba(unsigned int hex);
 
 /* camera.c */
-void	init_cam(t_fdf *fdf);
+void			init_cam(t_fdf *fdf);
 
 /* draw.c */
-void	draw_map(t_fdf *fdf);
-void	isometric(t_point *p, t_map *map);
+void			draw_map(t_fdf *fdf);
 
 /* map.c */
-t_map	*map_init(void);
-void	map_load(char *filename, t_map *map);
-void	map_fill(char *filename, t_map *map);
-int		check_filename(char *filename);
+t_map			*map_init(void);
+void			map_load(char *filename, t_map *map);
+void			map_fill(char *filename, t_map *map);
+int				check_filename(char *filename);
 
 /* map_utils.c */
-void	map_free(t_map *map);
-int		count_cols(char *line, char sep);
-void	parse_line(char *line, t_map *map, int line_n);
+void			map_free(t_map *map);
+int				count_cols(char *line, char sep);
+void			parse_line(char *line, t_map *map, int line_n);
 
 /* projections.c */
-t_point	project_pt(t_point p, t_fdf *fdf);
+t_point			project_pt(t_point p, t_fdf *fdf);
 
 /* error.c */
-void ft_exit(char *str);
+void 			ft_exit(char *str);
 
 #	endif
