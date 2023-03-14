@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:03:55 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/14 18:26:14 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:12:49 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_map	*map_init(void)
 	map->len = 0;
 	map->width = 0;
 	map->height = 0;
+	map->min_z = INT_MAX;
+	map->max_z = INT_MIN;
 	map->origin_x = 0;
 	map->origin_y = 0;
 	map->world_x = 0;

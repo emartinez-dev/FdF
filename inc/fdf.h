@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 19:13:14 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/14 19:01:34 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:09:42 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ typedef struct s_map
 	double			angle;
 	double			origin_x;
 	double			origin_y;
+	int				min_z;
+	int				max_z;
+	int				origin_z;
 	t_point			*points;
 }	t_map;
 

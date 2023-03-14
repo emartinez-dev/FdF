@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:23:19 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/14 18:34:56 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:13:23 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,10 @@ void	parse_line(char *line, t_map *map, int line_n)
 		map->points[start_index + i].x = i;
 		map->points[start_index + i].y = line_n;
 		map->points[start_index + i].z = ft_atoi(cols[i]);
+		if (map->points[start_index + i].z > map->max_z)
+			map->max_z = map->points[start_index + i].z;
+		if (map->points[start_index + i].z < map->min_z)
+			map->min_z = map->points[start_index + i].z;
 		map->points[start_index + i].color = get_color(cols[i]);
 		i++;
 	}
