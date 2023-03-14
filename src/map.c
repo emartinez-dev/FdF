@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:23:19 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/13 10:10:37 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:04:08 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,16 @@ int	check_filename(char *filename)
 		ft_exit(ERR_FILEOPEN);
 	ft_printf("Calculating map size...");
 	return (fd);
+}
+
+float	scale_map(t_map *map)
+{
+	float	x;
+	float	y;
+	float	scale;
+
+	x = WIDTH / map->width;
+	y = HEIGHT / map->height;
+	scale = fminf(x, y);
+	return (scale);
 }
