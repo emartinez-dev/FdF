@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:44:23 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/14 22:07:52 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:39:49 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,5 @@ int32_t	main(int argc, char **argv)
 	mlx_terminate(fdf.mlx);
 	free(fdf.cam);
 	map_free(fdf.map);
-	free(fdf.map);
 	return (0);
 }
