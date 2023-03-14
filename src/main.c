@@ -74,5 +74,8 @@ int32_t	main(int argc, char **argv)
 	mlx_loop_hook(fdf.mlx, &hook2, &fdf);
 	mlx_loop(fdf.mlx);
 	mlx_terminate(fdf.mlx);
+	free(fdf.cam);
+	map_free(fdf.map);
+	free(fdf.map);
 	return (0);
 }
