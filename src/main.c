@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:44:23 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/14 20:55:44 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:07:52 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,19 @@ void	hook2(void *param)
 
 	fdf = param;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
-		fdf->cam->offset_y -= 10;
+		fdf->cam->offset_y -= 5;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
-		fdf->cam->offset_y += 10;
+		fdf->cam->offset_y += 5;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
+		fdf->cam->offset_x -= 5;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
+		fdf->cam->offset_x += 5;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_O))
+		fdf->cam->zoom += 1;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
+		fdf->cam->zoom -= 1;
+	if (fdf->cam->zoom < 0.01)
+		fdf->cam->zoom = 0.01;
 	draw_map(fdf);
 }
 
