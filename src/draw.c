@@ -27,25 +27,6 @@ int	pixel_limits(t_point *point)
 	return (1);
 }
 
-void	origin_point(t_map *map, t_point focal_p)
-{
-	map->origin_x = (focal_p.x - focal_p.y) * cos(ISO_ANGLE);
-	map->origin_y = ((focal_p.x + focal_p.y + 1) * sin(ISO_ANGLE) - focal_p.z);
-}
-
-void	isometric(t_point *p, t_map *map)
-{
-	int	x;
-	int	y;
-
-	x = (p->x - p->y) * cos(ISO_ANGLE)
-		- map->origin_x + map->world_x;
-	y = ((p->x + p->y) * sin(ISO_ANGLE) - p->z)
-		- map->origin_y + map->world_y;
-	p->x = x;
-	p->y = y;
-}
-
 void	bresenham(t_point p0, t_point p1, mlx_image_t *img)
 {
 	int	dx;
