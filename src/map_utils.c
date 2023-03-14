@@ -6,11 +6,27 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:03:55 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/14 17:54:34 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:26:14 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
+
+t_map	*map_init(void)
+{
+	t_map	*map;
+
+	map = ft_calloc(1, sizeof(t_map));
+	map->points = NULL;
+	map->len = 0;
+	map->width = 0;
+	map->height = 0;
+	map->origin_x = 0;
+	map->origin_y = 0;
+	map->world_x = 0;
+	map->world_y = 0;
+	return (map);
+}
 
 void	map_free(t_map *map)
 {
@@ -48,41 +64,4 @@ int	count_cols(char *line, char sep)
 	}
 	ft_printf(".");
 	return (cols);
-}
-
-void	read_line(char *line, t_map *map, int line_n)
-{
-	char	**cols;
-	int		i;
-	int		start_index;
-
-	i = 0;
-	start_index = line_n * map->width;
-	cols = ft_split(line, ' ');
-	ft_printf("#");
-	while (cols[i] && cols[i][0] != '\n')
-	{
-		map->points[start_index + i].x = i;
-		map->points[start_index + i].y = line_n;
-		map->points[start_index + i].z = ft_atoi(cols[i]);
-		map->points[start_index + i].color = get_color(cols[i]);
-		i++;
-	}
-	ft_free_array(cols);
-}
-
-void	map_zoom(t_map *map)
-{
-	double	width_zoom;
-	double	height_zoom;
-
-	width_zoom = WIDTH / map->width;
-	height_zoom = HEIGHT / map->height;
-	ft_printf("\nAlto: %d\tZoom alto: %f\nAncho: %d\tZoom ancho: %f\n",
-		map->height, height_zoom, map->width, width_zoom);
-	if (width_zoom <= height_zoom)
-		map->zoom = width_zoom;
-	else
-		map->zoom = height_zoom;
-	map->z_scale = 1;
 }

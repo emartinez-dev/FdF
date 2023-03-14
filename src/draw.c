@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:34:40 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/14 17:52:33 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:17:43 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,47 +20,6 @@ int	pixel_limits(t_point *point)
 	if (point->y < 0 || point->y > HEIGHT)
 		return (0);
 	return (1);
-}
-
-void	bresenham(t_point p0, t_point p1, mlx_image_t *img, t_map *map)
-{
-	int	dx;
-	int	dy;
-	int	error;
-	int	sx;
-	int	sy;
-
-	isometric(&p0, map);
-	isometric(&p1, map);
-	sx = p0.x < p1.x ? 1 : -1;
-	sy = p0.y < p1.y ? 1 : -1;
-	dx = abs(p1.x - p0.x);
-	dy = -abs(p1.y - p0.y);
-	error = dx + dy;
-	while (1)
-	{
-		if (pixel_limits(&p0))
-			mlx_put_pixel(img, p0.x, p0.y, p0.color);
-		if (p0.x == p1.x && p0.y == p1.y) break;
-		if (2 * error >= dy)
-		{
-			if (p0.x == p1.x) break;
-			error += dy;
-			p0.x += sx;
-		}
-		if (2 * error <= dx)
-		{
-			if (p0.y == p1.y) break;
-			error += dx;
-			p0.y += sy;
-		}
-	}
-}
-
-void	world_center(t_map *map)
-{
-	map->world_x = WIDTH / 2;
-	map->world_y = HEIGHT / 2;
 }
 
 void	origin_point(t_map *map, t_point focal_p)
@@ -84,19 +43,7 @@ void	isometric(t_point *p, t_map *map)
 
 void	draw_map(t_map *map, mlx_image_t *g_img, mlx_t *mlx)
 {
-	unsigned int	i;
-
-	i = 0;
-	world_center(map);
 	origin_point(map, map->points[
 		(map->width / 2 + map->height / 2 * map->width)]);
-	while (i < map->len)
-	{
-		if (map->points[i].x < (int)(map->width - 1))
-			bresenham(map->points[i], map->points[i + 1], g_img, map);
-		if (map->points[i].y < (int)(map->height - 1))
-			bresenham(map->points[i], map->points[i + map->width], g_img, map);
-		i++;
-	}
 	mlx_image_to_window(mlx, g_img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:44:23 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/13 20:55:56 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:50:03 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,40 @@
 
 void	hook(void *param)
 {
-	mlx_t	*mlx;
+	t_fdf	*fdf;
 
-	mlx = param;
-	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(mlx);
+	fdf = param;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(fdf->mlx);
+}
+
+void	print_points(t_map *map)
+{
+	unsigned int	i;
+
+	i = -1;
+	while (++i < map->width * map->height)
+		printf("x: %d\t y: %d\t z: %d\n", map->points[i].x, map->points[i].y, map->points[i].z);
 }
 
 int32_t	main(int argc, char **argv)
 {
-	mlx_t		*mlx;
-	mlx_image_t	*g_img;
-	t_map		map;
+	t_fdf		fdf;
 
 	if (argc != 2)
 		return (1);
-	map_init(argv[1], &map);
-	map_fill(argv[1], &map);
-	mlx = mlx_init(WIDTH, HEIGHT, "franmart-FdF", true);
-	if (!mlx)
+	fdf.map = map_init();
+	map_load(argv[1], fdf.map);
+	print_points(fdf.map);
+	fdf.mlx = mlx_init(WIDTH, HEIGHT, "franmart-FdF", true);
+	if (!fdf.mlx)
 		exit(EXIT_FAILURE);
-	g_img = mlx_new_image(mlx, WIDTH, HEIGHT);
-	if (!g_img)
+	fdf.g_img = mlx_new_image(fdf.mlx, WIDTH, HEIGHT);
+	if (!fdf.g_img)
 		exit(EXIT_FAILURE);
-	draw_map(&map, g_img, mlx);
-	mlx_loop_hook(mlx, &hook, mlx);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	//draw_map(&map, g_img, mlx);
+	mlx_loop_hook(fdf.mlx, &hook, &fdf);
+	mlx_loop(fdf.mlx);
+	mlx_terminate(fdf.mlx);
 	return (0);
 }

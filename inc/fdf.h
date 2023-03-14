@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 19:13:14 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/13 10:07:55 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:01:34 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,13 @@ typedef struct s_map
 	t_point			*points;
 }	t_map;
 
+typedef struct s_fdf
+{
+	t_map		*map;
+	mlx_t		*mlx;
+	mlx_image_t	*g_img;
+}	t_fdf;
+
 /* colors.c */
 unsigned int	get_color(char *line);
 uint32_t		hex_to_rgba(unsigned int hex);
@@ -67,15 +74,15 @@ void	draw_map(t_map *map, mlx_image_t *g_img, mlx_t *mlx);
 void	isometric(t_point *p, t_map *map);
 
 /* map.c */
-void	map_init(char *filename, t_map *map);
+t_map	*map_init(void);
+void	map_load(char *filename, t_map *map);
 void	map_fill(char *filename, t_map *map);
 int		check_filename(char *filename);
 
 /* map_utils.c */
 void	map_free(t_map *map);
 int		count_cols(char *line, char sep);
-void	read_line(char *line, t_map *map, int line_n);
-void	map_zoom(t_map *map);
+void	parse_line(char *line, t_map *map, int line_n);
 
 /* error.c */
 void ft_exit(char *str);

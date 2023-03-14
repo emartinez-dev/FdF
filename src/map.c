@@ -6,22 +6,22 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:23:19 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/14 18:04:08 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:34:56 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 
 /* Calculates the map size and allocates the memory for it */
-void	map_init(char *filename, t_map *map)
+void	map_load(char *filename, t_map *map)
 {
 	unsigned int	width;
 	char			*line;
 	int				fd;
 
-	map->height = 0;
 	fd = check_filename(filename);
 	line = ft_gnl(fd);
+	ft_printf("\nLoading map -> ");
 	while (line)
 	{
 		width = count_cols(line, ' ');
@@ -39,23 +39,22 @@ void	map_init(char *filename, t_map *map)
 	if (map->len == 0)
 		ft_exit(ERR_MAPEMPTY);
 	map->points = ft_calloc(map->len, sizeof(t_point));
+	map_fill(filename, map);
 }
 
-/* Fill the points of the map */
 void	map_fill(char *filename, t_map *map)
 {
 	unsigned int	i;
 	int				fd;
 	char			*line;
 
-	map_zoom(map);
 	i = 0;
 	fd = open(filename, O_RDONLY);
 	line = ft_gnl(fd);
 	ft_printf("\nFilling map points -> ");
 	while (line)
 	{
-		read_line(line, map, i);
+		parse_line(line, map, i);
 		free(line);
 		line = ft_gnl(fd);
 		i++;
@@ -64,6 +63,7 @@ void	map_fill(char *filename, t_map *map)
 	free(line);
 	close(fd);
 }
+
 
 int	check_filename(char *filename)
 {
@@ -78,14 +78,23 @@ int	check_filename(char *filename)
 	return (fd);
 }
 
-float	scale_map(t_map *map)
+void	parse_line(char *line, t_map *map, int line_n)
 {
-	float	x;
-	float	y;
-	float	scale;
+	char	**cols;
+	int		i;
+	int		start_index;
 
-	x = WIDTH / map->width;
-	y = HEIGHT / map->height;
-	scale = fminf(x, y);
-	return (scale);
+	i = 0;
+	start_index = line_n * map->width;
+	cols = ft_split(line, ' ');
+	ft_printf("#");
+	while (cols[i] && cols[i][0] != '\n')
+	{
+		map->points[start_index + i].x = i;
+		map->points[start_index + i].y = line_n;
+		map->points[start_index + i].z = ft_atoi(cols[i]);
+		map->points[start_index + i].color = get_color(cols[i]);
+		i++;
+	}
+	ft_free_array(cols);
 }
