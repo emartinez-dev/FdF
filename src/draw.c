@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:34:40 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 11:43:26 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:52:47 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	bresenham(t_point p0, t_point p1, mlx_image_t *img)
 		if (p0.x == p1.x && p0.y == p1.y)
 			return ;
 		if (pixel_limits(&p0))
-			mlx_put_pixel(img, p0.x, p0.y, p0.color);
+			mlx_put_pixel(img, p0.x, p0.y, interpolate_color(p0, p1, bres));
 		if (2 * bres.error >= bres.dy)
 		{
 			if (p0.x == p1.x)
@@ -67,6 +67,8 @@ void	calc_initial_bresenham(t_point p0, t_point p1, t_bresenham *bres)
 	bres->dx = abs(p1.x - p0.x);
 	bres->dy = -abs(p1.y - p0.y);
 	bres->error = bres->dx + bres->dy;
+	bres->init_x = p0.x;
+	bres->init_y = p0.y;
 }
 
 void	draw_map(t_fdf *fdf)

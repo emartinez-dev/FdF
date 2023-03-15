@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 19:13:14 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 11:31:35 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:39:32 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,15 @@ typedef struct	s_bresenham
 	int			sx;
 	int			sy;
 	int			error;
+	int			steps;
+	int			init_x;
+	int			init_y;
 }	t_bresenham;
 
 /* colors.c */
 unsigned int	get_color(char *line);
 uint32_t		hex_to_rgba(unsigned int hex);
-uint32_t		interpolate_color(t_point p0, t_point p1, float step);
+uint32_t		interpolate_color(t_point p0, t_point p1, t_bresenham bres);
 
 /* camera.c */
 void			init_cam(t_fdf *fdf);
