@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:34:40 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 12:52:47 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:44:10 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	draw_map(t_fdf *fdf)
 	t_point			*pts;
 
 	clear_background(fdf);
+	mlx_put_string(fdf->mlx, "H / J: Show / close instructions", 10, 10);
 	i = -1;
 	pts = fdf->map->points;
 	width = fdf->map->width;

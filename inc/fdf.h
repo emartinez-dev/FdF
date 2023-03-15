@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 19:13:14 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 12:39:32 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:47:01 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ typedef struct s_fdf
 	t_cam		*cam;
 	mlx_t		*mlx;
 	mlx_image_t	*g_img;
+	mlx_image_t	*help;
+	int			help_on;
 }	t_fdf;
 
 typedef struct	s_bresenham
@@ -107,6 +109,10 @@ void			parse_line(char *line, t_map *map, int line_n);
 
 /* projections.c */
 t_point			project_pt(t_point p, t_fdf *fdf);
+
+/* hooks.c */
+void			exit_help_hook(void *param);
+void			movement_hook(void *param);
 
 /* error.c */
 void 			ft_exit(char *str);

@@ -6,7 +6,7 @@
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 16:21:03 by franmart          #+#    #+#              #
-#    Updated: 2023/03/14 19:45:07 by franmart         ###   ########.fr        #
+#    Updated: 2023/03/15 15:45:48 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ _SRC = 	map.c\
 		camera.c\
 		projections.c\
 		map_utils.c\
+		hooks.c\
 		draw.c\
 		error.c\
 		main.c
