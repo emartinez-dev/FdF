@@ -6,7 +6,7 @@
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 16:21:03 by franmart          #+#    #+#              #
-#    Updated: 2023/03/15 15:45:48 by franmart         ###   ########.fr        #
+#    Updated: 2023/03/15 17:36:28 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ _SRC = 	map.c\
 		map_utils.c\
 		hooks.c\
 		draw.c\
+		draw_utils.c\
 		error.c\
 		main.c
 

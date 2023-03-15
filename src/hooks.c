@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:44:53 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 17:12:39 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/15 17:35:02 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	exit_help_hook(void *param)
 			fdf->img->enabled = 1;
 			fdf->help_on = 0;
 		}
-
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_H))
 	{

@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 19:13:14 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 17:08:02 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/15 17:34:48 by franmart         ###   ########.fr		  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 # include <errno.h>
 # include <stdio.h>
 
-/* Constants */
+/* Constants
+ISO_ANGLE is 26.5 degrees to radians. We use this instead of 30 degrees because
+in computer graphics this is more visually apealing */
 # define WIDTH 1200
 # define HEIGHT 1000
 # define ISO_ANGLE 0.463646716
@@ -81,7 +83,7 @@ typedef struct s_fdf
 	int			help_on;
 }	t_fdf;
 
-typedef struct	s_bresenham
+typedef struct s_bresenham
 {
 	int			dx;
 	int			dy;
@@ -108,10 +110,14 @@ uint32_t		interpolate_color(t_point p0, t_point p1, t_bresenham bres);
 void			init_cam(t_fdf *fdf);
 
 /* draw.c */
+void			bresenham(t_point p0, t_point p1, mlx_image_t *img);
 void			draw_map(t_fdf *fdf);
 void			draw_instructions(t_fdf *fdf);
-void			calc_initial_bresenham(t_point p0, t_point p1, \
-									t_bresenham *bres);
+
+/* draw_utils.c */
+void			clear_background(t_fdf *fdf);
+int				pixel_limits(t_point *point);
+void			init_bresenham(t_point p0, t_point p1, t_bresenham *bres);
 
 /* map.c */
 t_map			*map_init(void);
@@ -134,6 +140,6 @@ void			movement_hook(void *param);
 void			zoom_hook(void *param);
 
 /* error.c */
-void 			ft_exit(char *str);
+void			ft_exit(char *str);
 
 #	endif
