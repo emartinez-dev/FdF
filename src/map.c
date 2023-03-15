@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:23:19 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/14 19:13:23 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/15 10:59:42 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	map_fill(char *filename, t_map *map)
 	free(line);
 	close(fd);
 }
-
 
 int	check_filename(char *filename)
 {

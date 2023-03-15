@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 19:13:14 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/14 22:25:25 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/15 11:31:35 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_point
 	int				x;
 	int				y;
 	int				z;
-	unsigned int	color;
+	uint32_t		color;
 }	t_point;
 
 typedef struct s_map
@@ -69,15 +69,27 @@ typedef struct s_fdf
 	mlx_image_t	*g_img;
 }	t_fdf;
 
+typedef struct	s_bresenham
+{
+	int			dx;
+	int			dy;
+	int			sx;
+	int			sy;
+	int			error;
+}	t_bresenham;
+
 /* colors.c */
 unsigned int	get_color(char *line);
 uint32_t		hex_to_rgba(unsigned int hex);
+uint32_t		interpolate_color(t_point p0, t_point p1, float step);
 
 /* camera.c */
 void			init_cam(t_fdf *fdf);
 
 /* draw.c */
 void			draw_map(t_fdf *fdf);
+void			calc_initial_bresenham(t_point p0, t_point p1, \
+									t_bresenham *bres);
 
 /* map.c */
 t_map			*map_init(void);

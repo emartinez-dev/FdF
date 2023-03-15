@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:44:23 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/14 22:39:49 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/15 10:59:55 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,12 @@ void	hook2(void *param)
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
 		fdf->cam->offset_x += 5;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_O))
-		fdf->cam->zoom += 1;
+		fdf->cam->zoom *= 1.1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
-		fdf->cam->zoom -= 1;
+		fdf->cam->zoom /= 1.1;
 	if (fdf->cam->zoom < 0.01)
 		fdf->cam->zoom = 0.01;
 	draw_map(fdf);
-}
-
-void	print_points(t_map *map)
-{
-	unsigned int	i;
-
-	i = -1;
-	while (++i < map->width * map->height)
-		printf("x: %d\t y: %d\t z: %d\n", map->points[i].x, map->points[i].y, map->points[i].z);
-	printf("Min z: %d\t Max z: %d\n", map->min_z, map->max_z);
 }
 
 int32_t	main(int argc, char **argv)
@@ -61,7 +51,6 @@ int32_t	main(int argc, char **argv)
 		return (1);
 	fdf.map = map_init();
 	map_load(argv[1], fdf.map);
-	//print_points(fdf.map);
 	fdf.mlx = mlx_init(WIDTH, HEIGHT, "franmart-FdF", true);
 	if (!fdf.mlx)
 		exit(EXIT_FAILURE);

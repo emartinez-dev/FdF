@@ -6,16 +6,15 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:34:40 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/14 22:06:54 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/15 11:43:26 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 
-
-void clear_background(t_fdf *fdf)
+void	clear_background(t_fdf *fdf)
 {
-	fdf->g_img->pixels = ft_memset(fdf->g_img->pixels, 0, WIDTH * HEIGHT * 4);
+	fdf->g_img->pixels = ft_memset(fdf->g_img->pixels, 100, WIDTH * HEIGHT * 4);
 }
 
 int	pixel_limits(t_point *point)
@@ -29,36 +28,45 @@ int	pixel_limits(t_point *point)
 
 void	bresenham(t_point p0, t_point p1, mlx_image_t *img)
 {
-	int	dx;
-	int	dy;
-	int	error;
-	int	sx;
-	int	sy;
+	t_bresenham	bres;
 
-	sx = p0.x < p1.x ? 1 : -1;
-	sy = p0.y < p1.y ? 1 : -1;
-	dx = abs(p1.x - p0.x);
-	dy = -abs(p1.y - p0.y);
-	error = dx + dy;
+	calc_initial_bresenham(p0, p1, &bres);
 	while (1)
 	{
 		if (p0.x == p1.x && p0.y == p1.y)
-			break ;
+			return ;
 		if (pixel_limits(&p0))
 			mlx_put_pixel(img, p0.x, p0.y, p0.color);
-		if (2 * error >= dy)
+		if (2 * bres.error >= bres.dy)
 		{
-			if (p0.x == p1.x) break;
-			error += dy;
-			p0.x += sx;
+			if (p0.x == p1.x)
+				return ;
+			bres.error += bres.dy;
+			p0.x += bres.sx;
 		}
-		if (2 * error <= dx)
+		if (2 * bres.error <= bres.dx)
 		{
-			if (p0.y == p1.y) break;
-			error += dx;
-			p0.y += sy;
+			if (p0.y == p1.y)
+				return ;
+			bres.error += bres.dx;
+			p0.y += bres.sy;
 		}
 	}
+}
+
+void	calc_initial_bresenham(t_point p0, t_point p1, t_bresenham *bres)
+{
+	if (p0.x < p1.x)
+		bres->sx = 1;
+	else
+		bres->sx = -1;
+	if (p0.y < p1.y)
+		bres->sy = 1;
+	else
+		bres->sy = -1;
+	bres->dx = abs(p1.x - p0.x);
+	bres->dy = -abs(p1.y - p0.y);
+	bres->error = bres->dx + bres->dy;
 }
 
 void	draw_map(t_fdf *fdf)
