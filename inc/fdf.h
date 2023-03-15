@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 19:13:14 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 15:47:01 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/15 17:08:02 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_map
 
 typedef struct s_cam
 {
+	int		projection;
 	float	zoom;
 	double	z_scale;
 	int		offset_x;
@@ -66,7 +67,7 @@ typedef struct s_fdf
 	t_map		*map;
 	t_cam		*cam;
 	mlx_t		*mlx;
-	mlx_image_t	*g_img;
+	mlx_image_t	*img;
 	mlx_image_t	*help;
 	int			help_on;
 }	t_fdf;
@@ -82,6 +83,12 @@ typedef struct	s_bresenham
 	int			init_x;
 	int			init_y;
 }	t_bresenham;
+
+enum e_projections
+{
+	TOP,
+	ISOMETRIC
+};
 
 /* colors.c */
 unsigned int	get_color(char *line);

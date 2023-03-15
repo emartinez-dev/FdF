@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 19:23:11 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/14 20:33:38 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:33:05 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ void	init_cam(t_fdf *fdf)
 	fdf->cam->z_scale = 1;
 	fdf->cam->offset_x = 0;
 	fdf->cam->offset_y = 0;
+	fdf->cam->projection = ISOMETRIC;
 }
