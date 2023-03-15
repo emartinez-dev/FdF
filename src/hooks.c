@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:44:53 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 18:29:32 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/15 21:23:27 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	attach_hooks(t_fdf *fdf)
 	mlx_loop_hook(fdf->mlx, &movement_hook, fdf);
 	mlx_loop_hook(fdf->mlx, &zoom_hook, fdf);
 	mlx_loop_hook(fdf->mlx, &rotate_hook, fdf);
+	mlx_loop_hook(fdf->mlx, &bonus_hook, fdf);
 }
 
 void	exit_help_hook(void *param)

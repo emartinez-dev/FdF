@@ -156,4 +156,9 @@ void			rotate_hook(void *param);
 /* error.c */
 void			ft_exit(char *str);
 
+/* bonus.c */
+void			rainbow_mode(t_map *map);
+void			bonus_hook(void *param);
+uint32_t		random_color(char r1, char g1, char b1);
+
 #	endif
