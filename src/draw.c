@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:34:40 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 15:44:10 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:41:26 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	clear_background(t_fdf *fdf)
 {
-	fdf->g_img->pixels = ft_memset(fdf->g_img->pixels, 100, WIDTH * HEIGHT * 4);
+	fdf->img->pixels = ft_memset(fdf->img->pixels, 100, WIDTH * HEIGHT * 4);
 }
 
 int	pixel_limits(t_point *point)
@@ -79,7 +79,6 @@ void	draw_map(t_fdf *fdf)
 	t_point			*pts;
 
 	clear_background(fdf);
-	mlx_put_string(fdf->mlx, "H / J: Show / close instructions", 10, 10);
 	i = -1;
 	pts = fdf->map->points;
 	width = fdf->map->width;
@@ -87,9 +86,22 @@ void	draw_map(t_fdf *fdf)
 	{
 		pt = project_pt(fdf->map->points[i], fdf);
 		if (i % width != fdf->map->width - 1)
-			bresenham(pt, project_pt(pts[i + 1], fdf), fdf->g_img);
+			bresenham(pt, project_pt(pts[i + 1], fdf), fdf->img);
 		if (i + width < fdf->map->len)
-			bresenham(pt, project_pt(pts[i + width], fdf), fdf->g_img);
+			bresenham(pt, project_pt(pts[i + width], fdf), fdf->img);
 	}
-	mlx_image_to_window(fdf->mlx, fdf->g_img, 0, 0);
+	mlx_image_to_window(fdf->mlx, fdf->img, 0, 0);
+}
+
+void	draw_instructions(t_fdf *fdf)
+{
+	fdf->help_on = 0;
+	fdf->help = mlx_put_string(fdf->mlx, I_INTRO, 10, 20);
+	fdf->help = mlx_put_string(fdf->mlx, I_QUIT, 10, 40);
+	fdf->help = mlx_put_string(fdf->mlx, I_CLOSE_HELP, 10, 60);
+	fdf->help = mlx_put_string(fdf->mlx, I_MOVE, 10, 80);
+	fdf->help = mlx_put_string(fdf->mlx, I_ZOOM, 10, 100);
+	fdf->help = mlx_put_string(fdf->mlx, I_ISO, 10, 120);
+	fdf->help = mlx_put_string(fdf->mlx, I_ZSCALE, 10, 140);
+	fdf->help->enabled = 0;
 }

@@ -35,6 +35,15 @@
 # define ERR_MAPEMPTY "ERROR: map is empty"
 # define ERR_MAPWIDTH "ERROR: map width must be equal on all lines"
 
+/* Instructions */
+# define I_INTRO "FDF INSTRUCTIONS"
+# define I_QUIT "ESC: quit FdF"
+# define I_CLOSE_HELP "J: close help"
+# define I_MOVE "WASD: camera movement"
+# define I_ZOOM "O/P: Zoom in/out"
+# define I_ISO "1/2: Isometric / Top view"
+# define I_ZSCALE "U/I: Increase / Decrease z scale"
+
 typedef struct s_point
 {
 	int				x;
@@ -100,6 +109,7 @@ void			init_cam(t_fdf *fdf);
 
 /* draw.c */
 void			draw_map(t_fdf *fdf);
+void			draw_instructions(t_fdf *fdf);
 void			calc_initial_bresenham(t_point p0, t_point p1, \
 									t_bresenham *bres);
 
@@ -118,8 +128,10 @@ void			parse_line(char *line, t_map *map, int line_n);
 t_point			project_pt(t_point p, t_fdf *fdf);
 
 /* hooks.c */
+void			attach_hooks(t_fdf *fdf);
 void			exit_help_hook(void *param);
 void			movement_hook(void *param);
+void			zoom_hook(void *param);
 
 /* error.c */
 void 			ft_exit(char *str);
