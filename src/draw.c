@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:34:40 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 17:41:08 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/15 18:34:34 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,16 @@ void	bresenham(t_point p0, t_point p1, mlx_image_t *img)
 void	draw_instructions(t_fdf *fdf)
 {
 	fdf->help_on = 0;
-	fdf->help = mlx_put_string(fdf->mlx, I_INTRO, 10, 20);
-	fdf->help = mlx_put_string(fdf->mlx, I_QUIT, 10, 40);
-	fdf->help = mlx_put_string(fdf->mlx, I_CLOSE_HELP, 10, 60);
-	fdf->help = mlx_put_string(fdf->mlx, I_MOVE, 10, 80);
-	fdf->help = mlx_put_string(fdf->mlx, I_ZOOM, 10, 100);
-	fdf->help = mlx_put_string(fdf->mlx, I_ISO, 10, 120);
-	fdf->help = mlx_put_string(fdf->mlx, I_ZSCALE, 10, 140);
+	fdf->help = mlx_put_string(fdf->mlx, I_INTRO, 10, 0);
+	fdf->help = mlx_put_string(fdf->mlx, I_QUIT, 10, 20);
+	fdf->help = mlx_put_string(fdf->mlx, I_CLOSE_HELP, 10, 40);
+	fdf->help = mlx_put_string(fdf->mlx, I_MOVE, 10, 60);
+	fdf->help = mlx_put_string(fdf->mlx, I_ZOOM, 10, 80);
+	fdf->help = mlx_put_string(fdf->mlx, I_ISO, 10, 100);
+	fdf->help = mlx_put_string(fdf->mlx, I_ZSCALE, 10, 120);
+	fdf->help = mlx_put_string(fdf->mlx, I_ROT_X, 10, 140);
+	fdf->help = mlx_put_string(fdf->mlx, I_ROT_Y, 10, 160);
+	fdf->help = mlx_put_string(fdf->mlx, I_ROT_Z, 10, 180);
+	fdf->help = mlx_put_string(fdf->mlx, I_ROT_RESET, 10, 200);
 	fdf->help->enabled = 0;
 }

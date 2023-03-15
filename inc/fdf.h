@@ -28,6 +28,8 @@ in computer graphics this is more visually apealing */
 # define WIDTH 1200
 # define HEIGHT 1000
 # define ISO_ANGLE 0.463646716
+# define ROTATION_SPEED 0.05
+# define MOVE_SPEED 5
 
 /* Error messages */
 # define ERR_ARGS "ERROR: you must enter one (1) parameter"
@@ -45,6 +47,10 @@ in computer graphics this is more visually apealing */
 # define I_ZOOM "O/P: Zoom in/out"
 # define I_ISO "1/2: Isometric / Top view"
 # define I_ZSCALE "U/I: Increase / Decrease z scale"
+# define I_ROT_X "2/8: rotate around x axis"
+# define I_ROT_Y "4/6: rotate around y axis"
+# define I_ROT_Z "7/9: rotate around z axis"
+# define I_ROT_RESET "5: reset camera"
 
 typedef struct s_point
 {
@@ -71,6 +77,9 @@ typedef struct s_cam
 	double	z_scale;
 	int		offset_x;
 	int		offset_y;
+	double	x_angle;
+	double	y_angle;
+	double	z_angle;
 }	t_cam;
 
 typedef struct s_fdf
@@ -108,6 +117,7 @@ uint32_t		interpolate_color(t_point p0, t_point p1, t_bresenham bres);
 
 /* camera.c */
 void			init_cam(t_fdf *fdf);
+void			reset_cam(t_fdf *fdf);
 
 /* draw.c */
 void			bresenham(t_point p0, t_point p1, mlx_image_t *img);
@@ -130,14 +140,18 @@ void			map_free(t_map *map);
 int				count_cols(char *line, char sep);
 void			parse_line(char *line, t_map *map, int line_n);
 
-/* projections.c */
+/* geometry.c */
 t_point			project_pt(t_point p, t_fdf *fdf);
+void			rotate_x(t_point *pt, t_fdf *fdf);
+void			rotate_y(t_point *pt, t_fdf *fdf);
+void			rotate_z(t_point *pt, t_fdf *fdf);
 
 /* hooks.c */
 void			attach_hooks(t_fdf *fdf);
 void			exit_help_hook(void *param);
 void			movement_hook(void *param);
 void			zoom_hook(void *param);
+void			rotate_hook(void *param);
 
 /* error.c */
 void			ft_exit(char *str);

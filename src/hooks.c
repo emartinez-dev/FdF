@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:44:53 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 17:35:02 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/15 18:29:32 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	attach_hooks(t_fdf *fdf)
 	mlx_loop_hook(fdf->mlx, &exit_help_hook, fdf);
 	mlx_loop_hook(fdf->mlx, &movement_hook, fdf);
 	mlx_loop_hook(fdf->mlx, &zoom_hook, fdf);
+	mlx_loop_hook(fdf->mlx, &rotate_hook, fdf);
 }
 
 void	exit_help_hook(void *param)
@@ -52,13 +53,13 @@ void	movement_hook(void *param)
 
 	fdf = param;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
-		fdf->cam->offset_y -= 5;
+		fdf->cam->offset_y -= MOVE_SPEED;
 	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
-		fdf->cam->offset_y += 5;
+		fdf->cam->offset_y += MOVE_SPEED;
 	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
-		fdf->cam->offset_x -= 5;
+		fdf->cam->offset_x -= MOVE_SPEED;
 	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
-		fdf->cam->offset_x += 5;
+		fdf->cam->offset_x += MOVE_SPEED;
 	else
 		return ;
 	draw_map(fdf);
@@ -69,6 +70,9 @@ void	zoom_hook(void *param)
 	t_fdf	*fdf;
 
 	fdf = param;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_1) || \
+		mlx_is_key_down(fdf->mlx, MLX_KEY_2))
+		reset_cam(fdf);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_O))
 		fdf->cam->zoom *= 1.1;
 	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
@@ -85,6 +89,30 @@ void	zoom_hook(void *param)
 		fdf->cam->projection = ISOMETRIC;
 	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_2))
 		fdf->cam->projection = TOP;
+	else
+		return ;
+	draw_map(fdf);
+}
+
+void	rotate_hook(void *param)
+{
+	t_fdf	*fdf;
+
+	fdf = param;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_2))
+		fdf->cam->x_angle += ROTATION_SPEED;
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_8))
+		fdf->cam->x_angle -= ROTATION_SPEED;
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_6))
+		fdf->cam->y_angle += ROTATION_SPEED;
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_4))
+		fdf->cam->y_angle -= ROTATION_SPEED;
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_9))
+		fdf->cam->z_angle += ROTATION_SPEED;
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_7))
+		fdf->cam->z_angle -= ROTATION_SPEED;
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_5))
+		reset_cam(fdf);
 	else
 		return ;
 	draw_map(fdf);
