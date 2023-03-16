@@ -25,8 +25,8 @@
 /* Constants
 ISO_ANGLE is 26.5 degrees to radians. We use this instead of 30 degrees because
 in computer graphics this is more visually apealing */
-# define WIDTH 1200
-# define HEIGHT 1000
+# define WIDTH 2000
+# define HEIGHT 1500
 # define ISO_ANGLE 0.463646716
 # define ROTATION_SPEED 0.05
 # define MOVE_SPEED 5
