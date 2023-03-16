@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:35:32 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 17:38:42 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/16 19:10:59 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	clear_background(t_fdf *fdf)
 
 int	pixel_limits(t_point *point)
 {
-	if (point->x < 0 || point->x > WIDTH)
+	if (point->x < 1 || point->x > WIDTH - 1)
 		return (0);
-	if (point->y < 0 || point->y > HEIGHT)
+	if (point->y < 1 || point->y > HEIGHT - 1)
 		return (0);
 	return (1);
 }
