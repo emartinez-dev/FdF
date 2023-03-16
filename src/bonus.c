@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 21:11:57 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 21:31:48 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/16 14:42:23 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	bonus_hook(void *param)
 	t_fdf	*fdf;
 
 	fdf = (t_fdf *)param;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_HOME))
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ENTER))
 	{
 		rainbow_mode(fdf->map);
 		draw_map(fdf);

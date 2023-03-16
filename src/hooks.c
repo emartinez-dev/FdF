@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:44:53 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 21:23:27 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/16 14:41:33 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,6 @@ void	zoom_hook(void *param)
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_1) || \
 		mlx_is_key_down(fdf->mlx, MLX_KEY_2))
 		reset_cam(fdf);
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_O))
-		fdf->cam->zoom *= 1.1;
-	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
-		fdf->cam->zoom /= 1.1;
-	else if (fdf->cam->zoom < 0.01)
-		fdf->cam->zoom = 0.01;
 	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_U))
 		fdf->cam->z_scale *= 1.1;
 	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
@@ -118,3 +112,12 @@ void	rotate_hook(void *param)
 		return ;
 	draw_map(fdf);
 }
+
+/*
+if (mlx_is_key_down(fdf->mlx, MLX_KEY_O))
+		fdf->cam->zoom *= 1.1;
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
+		fdf->cam->zoom /= 1.1;
+	else if (fdf->cam->zoom < 0.01)
+		fdf->cam->zoom = 0.01;
+*/
