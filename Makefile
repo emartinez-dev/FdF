@@ -6,7 +6,7 @@
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 16:21:03 by franmart          #+#    #+#              #
-#    Updated: 2023/03/16 09:27:58 by franmart         ###   ########.fr        #
+#    Updated: 2023/03/16 10:02:44 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 MLX42 = lib/MLX42/libmlx42.a
-MLX42_DIR = lib/MLX42
 
 LIBFT = lib/libft/libft.a
 LIBFT_DIR = lib/libft
@@ -43,9 +42,8 @@ SRC = $(addprefix $(SRC_DIR), $(_SRC))
 OBJ = $(SRC:.c=.o)
 
 ${NAME}: ${OBJ}
-	$(MAKE) all -C $(MLX42_DIR)
 	$(MAKE) all -C $(LIBFT_DIR)
-	$(CC) $(OBJ) -o $(NAME) $(MLX42) $(LIBFT) $(INCLUDES)
+	$(CC) $(FLAGS) $(OBJ) -o $(NAME) $(LIBFT) ${MLX42} $(INCLUDES)
 
 %.o: %.c
 	${CC} ${FLAGS} -c $^ -o $@
@@ -53,12 +51,10 @@ ${NAME}: ${OBJ}
 all: ${NAME}
 
 clean:
-		$(MAKE) clean -C $(MLX42_DIR)
 		$(MAKE) clean -C $(LIBFT_DIR)
 		${RM} ${OBJ}
 
 fclean: clean
-		$(MAKE) fclean -C $(MLX42_DIR)
 		$(MAKE) fclean -C $(LIBFT_DIR)
 		${RM} ${NAME}
 
