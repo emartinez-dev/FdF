@@ -6,14 +6,14 @@
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 16:21:03 by franmart          #+#    #+#              #
-#    Updated: 2023/03/15 21:20:07 by franmart         ###   ########.fr        #
+#    Updated: 2023/03/16 09:27:58 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -g3
+FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 MLX42 = lib/MLX42/libmlx42.a
@@ -22,7 +22,8 @@ MLX42_DIR = lib/MLX42
 LIBFT = lib/libft/libft.a
 LIBFT_DIR = lib/libft
 
-INCLUDES = -ldl -lglfw -pthread -lm
+INCLUDES = -I include -ldl -lglfw -pthread -lm \
+	-L"/Users/franmart/.brew/opt/glfw/lib/"
 
 SRC_DIR = src/
 _SRC = 	map.c\
