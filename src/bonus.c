@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 21:11:57 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 21:31:48 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/17 12:25:25 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 void	rainbow_mode(t_map *map)
 {
 	unsigned int	i;
+	uint32_t		rand_col;
 
 	srand(time(NULL));
 	i = -1;
+	rand_col = random_color(rand() % 255, rand() % 255, \
+			rand() % 255) / (map->max_z + map->min_z);
 	while (++i < map->len)
-		map->points[i].color = random_color(rand() % 255, rand() % 255, \
-			rand() % 255);
+		map->points[i].color = rand_col * map->points[i].z;
 }
 
 void	bonus_hook(void *param)
@@ -30,7 +32,7 @@ void	bonus_hook(void *param)
 	t_fdf	*fdf;
 
 	fdf = (t_fdf *)param;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_HOME))
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_R))
 	{
 		rainbow_mode(fdf->map);
 		draw_map(fdf);
