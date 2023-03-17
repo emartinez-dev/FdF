@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:44:53 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 21:23:27 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/17 12:33:32 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ void	zoom_hook(void *param)
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_1) || \
 		mlx_is_key_down(fdf->mlx, MLX_KEY_2))
 		reset_cam(fdf);
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_O))
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_ADD))
 		fdf->cam->zoom *= 1.1;
-	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_SUBTRACT))
 		fdf->cam->zoom /= 1.1;
 	else if (fdf->cam->zoom < 0.01)
 		fdf->cam->zoom = 0.01;

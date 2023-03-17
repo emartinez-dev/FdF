@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 19:23:11 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 18:25:49 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/17 12:30:48 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,7 @@ void	reset_cam(t_fdf *fdf)
 	fdf->cam->x_angle = 0;
 	fdf->cam->y_angle = 0;
 	fdf->cam->z_angle = 0;
+	fdf->cam->zoom = fminf((WIDTH / fdf->map->width), \
+		(HEIGHT / fdf->map->height)) / 2;
+	fdf->cam->z_scale = 1;
 }
