@@ -6,16 +6,16 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:42:09 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 21:11:49 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/18 14:40:44 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 
-unsigned int	get_color(char *line)
+uint32_t	get_color(char *line)
 {
-	char			**arr;
-	unsigned int	color;
+	char		**arr;
+	uint32_t	color;
 
 	if (ft_strchr(line, ',') != NULL)
 	{

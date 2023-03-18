@@ -111,7 +111,7 @@ enum e_projections
 };
 
 /* colors.c */
-unsigned int	get_color(char *line);
+uint32_t		get_color(char *line);
 uint32_t		hex_to_rgba(unsigned int hex);
 uint32_t		interpolate_color(t_point p0, t_point p1, t_bresenham bres);
 
