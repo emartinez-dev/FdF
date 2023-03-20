@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 19:44:55 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 18:25:42 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/20 09:34:45 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	rotate_x(t_point *pt, t_fdf *fdf)
 	int	y;
 	int	z;
 
+	if (fdf->cam->x_angle == 0)
+		return ;
 	y = pt->y;
 	z = pt->z;
 	pt->y = y * cos(fdf->cam->x_angle) + z * sin(fdf->cam->x_angle);
@@ -57,6 +59,8 @@ void	rotate_y(t_point *pt, t_fdf *fdf)
 	int	x;
 	int	z;
 
+	if (fdf->cam->y_angle == 0)
+		return ;
 	x = pt->x;
 	z = pt->z;
 	pt->x = x * cos(fdf->cam->y_angle) + z * sin(fdf->cam->y_angle);
@@ -68,6 +72,8 @@ void	rotate_z(t_point *pt, t_fdf *fdf)
 	int	x;
 	int	y;
 
+	if (fdf->cam->z_angle == 0)
+		return ;
 	x = pt->x;
 	y = pt->y;
 	pt->x = x * cos(fdf->cam->z_angle) - y * sin(fdf->cam->z_angle);
