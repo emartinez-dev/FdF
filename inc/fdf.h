@@ -125,7 +125,7 @@ void			draw_map(t_fdf *fdf);
 void			draw_instructions(t_fdf *fdf);
 
 /* draw_utils.c */
-void			clear_background(t_fdf *fdf);
+void			clear_background(mlx_image_t *img);
 int				pixel_limits(t_point *point);
 void			init_bresenham(t_point p0, t_point p1, t_bresenham *bres);
 

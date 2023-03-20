@@ -6,15 +6,15 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:35:32 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/16 19:10:59 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/20 09:28:32 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 
-void	clear_background(t_fdf *fdf)
+void	clear_background(mlx_image_t *img)
 {
-	fdf->img->pixels = ft_memset(fdf->img->pixels, 100, WIDTH * HEIGHT * 4);
+	img->pixels = ft_memset(img->pixels, 100, img->height * img->width * 4);
 }
 
 int	pixel_limits(t_point *point)

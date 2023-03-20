@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:34:40 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/15 18:34:34 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/20 09:30:51 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_map(t_fdf *fdf)
 	t_point			pt;
 	t_point			*pts;
 
-	clear_background(fdf);
+	clear_background(fdf->img);
 	i = -1;
 	pts = fdf->map->points;
 	width = fdf->map->width;
