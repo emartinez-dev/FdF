@@ -6,7 +6,7 @@
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 16:21:03 by franmart          #+#    #+#              #
-#    Updated: 2023/03/18 14:29:09 by franmart         ###   ########.fr        #
+#    Updated: 2023/03/23 18:35:30 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,11 @@ MLX42_DIR = lib/MLX42
 LIBFT = lib/libft/libft.a
 LIBFT_DIR = lib/libft
 
-INCLUDES = -ldl -lglfw -pthread -lm
+ifeq ($(shell uname), Darwin)
+	INCLUDES = -I include -ldl -lglfw -pthread -lm -L"/Users/$(shell echo $USER)/.brew/opt/glfw/lib/"
+else
+	INCLUDES = -ldl -lglfw -pthread -lm
+endif
 
 SRC_DIR = src/
 _SRC = 	map.c\
