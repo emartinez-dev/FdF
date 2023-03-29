@@ -6,7 +6,7 @@
 /*   By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 21:11:57 by franmart          #+#    #+#             */
-/*   Updated: 2023/03/17 12:25:25 by franmart         ###   ########.fr       */
+/*   Updated: 2023/03/29 11:33:37 by franmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,16 @@
 void	rainbow_mode(t_map *map)
 {
 	unsigned int	i;
+	float			divisor;
 	uint32_t		rand_col;
 
 	srand(time(NULL));
 	i = -1;
+	divisor = map->max_z + map->min_z;
+	if (divisor == 0)
+		divisor = 1;
 	rand_col = random_color(rand() % 255, rand() % 255, \
-			rand() % 255) / (map->max_z + map->min_z);
+			rand() % 255) / divisor;
 	while (++i < map->len)
 		map->points[i].color = rand_col * map->points[i].z;
 }
