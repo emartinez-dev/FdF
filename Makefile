@@ -6,7 +6,7 @@
 #    By: franmart <franmart@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 16:21:03 by franmart          #+#    #+#              #
-#    Updated: 2023/03/23 18:35:30 by franmart         ###   ########.fr        #
+#    Updated: 2023/06/14 10:16:05 by franmart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ ${NAME}: ${OBJ}
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME) $(MLX42) $(LIBFT) $(INCLUDES)
 
 %.o: %.c
+	@git submodule update --init --recursive
 	${CC} ${FLAGS} -c $^ -o $@
 
 all: ${NAME}
